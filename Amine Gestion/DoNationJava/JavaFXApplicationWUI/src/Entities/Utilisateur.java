@@ -40,6 +40,21 @@ public class Utilisateur {
         this.nom = nom;
     }
 
+    public Utilisateur(int id, String mail, String mdp, String salt, String numTel, Adresse adresse, String image, int pointXP, int enabled, String confirmation_token, Date password_requested_at, String nom) {
+        this.id = id;
+        this.mail = mail;
+        this.mdp = mdp;
+        this.salt = salt;
+        this.numTel = numTel;
+        this.adresse = adresse;
+        this.image = image;
+        this.pointXP = pointXP;
+        this.enabled = enabled;
+        this.confirmation_token = confirmation_token;
+        this.password_requested_at = password_requested_at;
+        this.nom = nom;
+    }
+    
     public Utilisateur(String mail, String mdp, String salt, String numTel, Adresse adresse, String image, int pointXP, String nom) {
         this.mail = mail;
         this.mdp = mdp;

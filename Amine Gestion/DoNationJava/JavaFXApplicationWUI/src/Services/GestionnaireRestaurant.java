@@ -25,7 +25,6 @@ public class GestionnaireRestaurant extends GestionnaireUtilisateur{
     String role="resto";
     
     public void InscrireResto(Restaurant r) {
-
         String qSql = "INSERT INTO utilisateurs(role, mail,mdp, salt, numTel, A_pays, A_ville, image, pointXP, enabled, confirm_token,nom, porteFeuilleV,pageFB,siteWeb,description,longitude,latitude) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement pst = null;

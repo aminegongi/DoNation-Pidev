@@ -14,24 +14,28 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import Entities.Utilisateur;
+
 /**
  *
  * @author Amine Gongi
  */
 public class GestionnaireHistoriqueConnexion {
+
     Connection cnx = DataSource.getInstance().getConnection();
-    
+
     public void AjouterHC(HistoriqueConnexion hc) {
         String qSql = "INSERT INTO historiqueconnexionuser (idUtilisateur, ipAdresse) VALUES (?,?)";
         PreparedStatement pst = null;
         try {
             pst = cnx.prepareStatement(qSql);
 
-            pst.setInt(1, hc.getIdUtilisateur());
+            pst.setInt(1, hc.getUser().getId());
             pst.setString(2, hc.getIpAdresse());
 
             System.out.println(pst.toString());
-            
+
             pst.executeUpdate();
             System.out.println("HC ADD Bravo ");
         } catch (SQLException ex) {
@@ -40,48 +44,63 @@ public class GestionnaireHistoriqueConnexion {
         }
     }
 
-    
-    public List<HistoriqueConnexion> fetchHC (){
+    public List<HistoriqueConnexion> fetchHC() {
         List<HistoriqueConnexion> listHC = new ArrayList<>();
-        //SELECT utilisateurs.nom , utilisateurs.prenom , utilisateurs.mail , historiqueconnexionuser.ipAdresse , historiqueconnexionuser.date FROM `historiqueconnexionuser` INNER join utilisateurs ON historiqueconnexionuser.idUtilisateur=utilisateurs.id 
-        String qSql="select * from historiqueconnexionuser ";
+        //SELECT utilisateurs.id , utilisateurs.nom , utilisateurs.mail , historiqueconnexionuser.ipAdresse , historiqueconnexionuser.date FROM `historiqueconnexionuser` INNER join utilisateurs ON historiqueconnexionuser.idUtilisateur=utilisateurs.id 
+        //String qSql="select * from historiqueconnexionuser ";
+        String qSql = "SELECT utilisateurs.id , utilisateurs.nom , utilisateurs.mail , historiqueconnexionuser.id , historiqueconnexionuser.ipAdresse , historiqueconnexionuser.date FROM `historiqueconnexionuser` INNER join utilisateurs ON historiqueconnexionuser.idUtilisateur=utilisateurs.id ";
+
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(qSql);
-            while(rs.next())
-            {
-                HistoriqueConnexion hc=new HistoriqueConnexion();
-                hc.setId(rs.getInt(1));
-                hc.setIdUtilisateur(rs.getInt(2));
-                hc.setIpAdresse(rs.getString(3));
-                hc.setDateCnx(rs.getTimestamp(4).toString());
+            while (rs.next()) {
+                HistoriqueConnexion hc = new HistoriqueConnexion();
+
+                Utilisateur usTmp = new Utilisateur();
+
+                usTmp.setId(rs.getInt(1));
+                usTmp.setNom(rs.getString(2));
+                usTmp.setMail(rs.getString(3));
+
+                hc.setUser(usTmp);
+                hc.setId(rs.getInt(4));
+                hc.setIpAdresse(rs.getString(5));
+                hc.setDateCnx(rs.getTimestamp(6));
 
                 listHC.add(hc);
             }
             System.out.println("HC Select Bravo ");
         } catch (SQLException ex) {
             System.out.println("HC Select Erreur !!!");
-        }   
+        }
         return listHC;
     }
-    
-    public HistoriqueConnexion fetchOneHC (int id){
+
+    public HistoriqueConnexion fetchOneUsHC(Utilisateur us) {
         HistoriqueConnexion hc = new HistoriqueConnexion();
-        String qSql="select * from historiqueconnexionuser where id='"+id+"'";
+        int id = us.getId();
+    //String qSql = "select * from historiqueconnexionuser where id='" + id + "'";
+        String qSql = "SELECT utilisateurs.id , utilisateurs.nom , utilisateurs.mail , historiqueconnexionuser.id , historiqueconnexionuser.ipAdresse , historiqueconnexionuser.date FROM `historiqueconnexionuser` INNER join utilisateurs ON historiqueconnexionuser.idUtilisateur=utilisateurs.id where idUtilisateur='"+id+"' ";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(qSql);
-            while(rs.next())
-            {
-                hc.setId(rs.getInt(1));
-                hc.setIdUtilisateur(rs.getInt(2));
-                hc.setIpAdresse(rs.getString(3));
-                hc.setDateCnx(rs.getTimestamp(4).toString());
+            while (rs.next()) {
+                Utilisateur usTmp = new Utilisateur();
+
+                usTmp.setId(rs.getInt(1));
+                usTmp.setNom(rs.getString(2));
+                usTmp.setMail(rs.getString(3));
+
+                hc.setUser(usTmp);
+                hc.setId(rs.getInt(4));
+                hc.setIpAdresse(rs.getString(5));
+                hc.setDateCnx(rs.getTimestamp(6));
+
             }
             System.out.println("Hc one Select Bravo ");
         } catch (SQLException ex) {
             System.out.println("Hc one Select Erreur !!!");
-        }   
+        }
         return hc;
     }
 }

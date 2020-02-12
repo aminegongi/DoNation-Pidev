@@ -16,12 +16,15 @@ import javafx.scene.control.TextField;
 import Services.*;
 import Entities.*;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -40,6 +43,8 @@ public class UiLoginController implements Initializable {
     private PasswordField txtMdp;
     @FXML
     private Button FacebookSign;
+    @FXML
+    private StackPane pane;
 
     /**
      * Initializes the controller class.
@@ -70,17 +75,29 @@ public class UiLoginController implements Initializable {
             al.showAndWait();
         } else if (l == -3) {
             al1.showAndWait();
+            Pane newLoadedPane;
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/views/UIActivationCompte.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 380, 550);
-                Stage stage = new Stage();
-                stage.setTitle("New Window");
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-
+                newLoadedPane = FXMLLoader.load(getClass().getResource("/views/UIActivationCompte.fxml"));
+                pane.getChildren().clear();
+                pane.getChildren().add(newLoadedPane);
+            } catch (IOException ex) {
+                Logger.getLogger(UiLoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            /* New Window
+            try {
+             FXMLLoader fxmlLoader = new FXMLLoader();
+             fxmlLoader.setLocation(getClass().getResource("/views/UIActivationCompte.fxml"));
+             Scene scene = new Scene(fxmlLoader.load(), 380, 550);
+             Stage stage = new Stage();
+             stage.setTitle("New Window");
+             stage.setScene(scene);
+             stage.show();
+             } catch (IOException e) {
+
+             }
+            */
+            
         } else {
             System.out.println("OK");
             String mail = txtMail.getText();

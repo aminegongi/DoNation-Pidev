@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.sql.Timestamp;
 
 /**
  *
@@ -19,17 +20,19 @@ import java.net.UnknownHostException;
  */
 public class HistoriqueConnexion {
     private int id;
-    private int idUtilisateur;
+    //private int idUtilisateur;
+    private Utilisateur user;
     private String ipAdresse;
-    private String dateCnx;
+    private Timestamp dateCnx;
 
     public HistoriqueConnexion() {
     }
     
     
-    public HistoriqueConnexion(int idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public HistoriqueConnexion(Utilisateur us) {
+        this.user = us;
         this.dateCnx=null;
+        
         /* Adresse IP machine
         try {
             this.ipAdresse =InetAddress.getLocalHost().getHostAddress();
@@ -41,7 +44,7 @@ public class HistoriqueConnexion {
         // Adresse IP Publique
         try
         { 
-            URL url_name = new URL("http://bot.whatismyipaddress.com"); // ou http://checkip.amazonaws.com/
+            URL url_name = new URL("http://bot.whatismyipaddress.com"); // wala http://checkip.amazonaws.com/
             BufferedReader bf = new BufferedReader(new InputStreamReader(url_name.openStream())); 
             this.ipAdresse = bf.readLine().trim(); 
         } 
@@ -49,7 +52,6 @@ public class HistoriqueConnexion {
         { 
             this.ipAdresse = "IP Prob" ;
         } 
-        
     }
 
     public int getId() {
@@ -60,12 +62,12 @@ public class HistoriqueConnexion {
         this.id = id;
     }
 
-    public int getIdUtilisateur() {
-        return idUtilisateur;
+    public Utilisateur getUser() {
+        return user;
     }
 
-    public void setIdUtilisateur(int idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setUser(Utilisateur user) {
+        this.user = user;
     }
 
     public String getIpAdresse() {
@@ -76,11 +78,11 @@ public class HistoriqueConnexion {
         this.ipAdresse = ipAdresse;
     }
 
-    public String getDateCnx() {
+    public Timestamp getDateCnx() {
         return dateCnx;
     }
 
-    public void setDateCnx(String dateCnx) {
+    public void setDateCnx(Timestamp dateCnx) {
         this.dateCnx = dateCnx;
     }
 
@@ -88,11 +90,11 @@ public class HistoriqueConnexion {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + this.id;
-        hash = 29 * hash + this.idUtilisateur;
-        hash = 29 * hash + Objects.hashCode(this.ipAdresse);
-        hash = 29 * hash + Objects.hashCode(this.dateCnx);
+        int hash = 5;
+        hash = 73 * hash + this.id;
+        hash = 73 * hash + Objects.hashCode(this.user);
+        hash = 73 * hash + Objects.hashCode(this.ipAdresse);
+        hash = 73 * hash + Objects.hashCode(this.dateCnx);
         return hash;
     }
 
@@ -108,7 +110,7 @@ public class HistoriqueConnexion {
         if (this.id != other.id) {
             return false;
         }
-        if (this.idUtilisateur != other.idUtilisateur) {
+        if (!Objects.equals(this.user, other.user)) {
             return false;
         }
         if (!Objects.equals(this.ipAdresse, other.ipAdresse)) {
@@ -122,8 +124,12 @@ public class HistoriqueConnexion {
 
     @Override
     public String toString() {
-        return "\n"+"HistoriqueConnexion{" + "id=" + id + ", idUtilisateur=" + idUtilisateur + ", ipAdresse=" + ipAdresse + ", dateCnx=" + dateCnx + '}';
+        return "HistoriqueConnexion{" + "idHc=" + id + ", user= nom: " + user.getNom() +" , mail:"+user.getMail() + ", ipAdresse=" + ipAdresse + ", dateCnx=" + dateCnx + '}';
     }
+
+    
+
+    
 
 
     

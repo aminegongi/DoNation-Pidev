@@ -5,19 +5,11 @@
  */
 package javafxapplicationwui;
 
-import Entities.Administrateur;
-import Entities.Entreprise;
-import Entities.HistoriqueConnexion;
-import Entities.Organisation;
-import Entities.Restaurant;
-import Entities.Utilisateur_Simple;
-import Services.GestionnaireAdministrateur;
-import Services.GestionnaireEntreprise;
-import Services.GestionnaireHistoriqueConnexion;
-import Services.GestionnaireOrganisation;
-import Services.GestionnaireRestaurant;
-import Services.GestionnaireUtilisateur_Simple;
-import Utils.Adresse;
+import Entities.*;
+import Services.*;
+import Utils.*;
+import java.sql.Timestamp;
+
 import java.util.Date;
 import java.util.HashMap;
 import javafx.application.Application;
@@ -25,7 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import org.mindrot.jbcrypt.BCrypt;
 
 
 
@@ -65,6 +57,7 @@ public class JavaFXApplicationWUI extends Application {
         //System.out.println(gus.fetchOneUS(3));
         //System.out.println(gus.checkMail("amine.googn@espritt.tn"));
         //System.out.println(gus.loginU("amine.googn@espritt.tn", "azaeazae"));
+        
         
         
         
@@ -128,7 +121,33 @@ public class JavaFXApplicationWUI extends Application {
         System.out.println(ghc.fetchOneHC(3));
         */
         //Restaurant res = new Restaurant(444, "www.fb.com", "sw", "zeaeaeaeaea", 22, 33, "mailee.zzzcom", "eezezeze", "salt", "9898", new Adresse("tunisie", "tunis"), "image", 212, "Amine");
-        GestionnaireRestaurant gresto = new GestionnaireRestaurant();
+        
+        //GestionnaireRestaurant gresto = new GestionnaireRestaurant();
+        //int UID = gresto.getIdByMail("mailee.zzzcom");
+        
+        //Restaurant res = gresto.fetchOneResto(UID);
+        //System.out.println(res);
+        //Date dd = new Date(2006, 2, 7);
+        //Timestamp t=new Timestamp(1002, 3, 4, 12, 60, 12, 12);
+        /*
+        Utilisateur_Simple us = new Utilisateur_Simple("gongi", "homme", dd, "amine.gongi@esprit.tn", "aaaa", "aaaa", "zfzzz", new Adresse("Tunisie", "tunis"), "image", 121, "aaaaaaa");
+        System.out.println("eee");
+        GestionnaireUtilisateur_Simple gus = new GestionnaireUtilisateur_Simple();
+        System.out.println("zzzzz");
+        
+        gus.InscrireUS(us);
+        */
+        
+        //String bb = BCrypt.gensalt(13);
+        
+        //System.out.println(BCrypt.hashpw("eezezeze",bb));
+        
+        //HistoriqueConnexion hc = new HistoriqueConnexion(res);
+        //GestionnaireHistoriqueConnexion ghc=new GestionnaireHistoriqueConnexion();
+        
+        //ghc.AjouterHC(hc);
+        //System.out.println(ghc.fetchHC());
+        //System.out.println(ghc.fetchOneUsHC(res));
         
         //gresto.InscrireResto(res);
         //gresto.InscrireResto(res);

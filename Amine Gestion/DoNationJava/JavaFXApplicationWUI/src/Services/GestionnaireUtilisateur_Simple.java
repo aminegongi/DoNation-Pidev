@@ -24,12 +24,14 @@ import java.util.List;
 public class GestionnaireUtilisateur_Simple extends GestionnaireUtilisateur{
         Connection cnx = DataSource.getInstance().getConnection();
         String role="us";
-    
-    public void InscrireUS(Utilisateur_Simple us) {
+        
+    public  void InscrireUS(Utilisateur_Simple us) throws SQLException {
         String qSql = "INSERT INTO utilisateurs(role, mail,mdp, salt, numTel, A_pays, A_ville, image, pointXP, enabled, confirm_token,nom, prenom, genre, dateNaissance) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement pst = null;
-        try {
+                System.out.println("cecec");
+
+        //try {
             pst = cnx.prepareStatement(qSql);
             
             pst.setString(1, role);
@@ -37,24 +39,33 @@ public class GestionnaireUtilisateur_Simple extends GestionnaireUtilisateur{
             pst.setString(3, us.getMdp());
             pst.setString(4, us.getSalt());
             pst.setString(5, us.getNumTel());
+            
             pst.setString(6, us.getAdresse().getPays());
             pst.setString(7, us.getAdresse().getVille());
+            
             pst.setString(8, us.getImage());
             pst.setInt(9, us.getPointXP());
             pst.setInt(10, us.getEnabled());
             pst.setString(11, us.getConfirmation_token());
+            
             pst.setString(12, us.getNom());
             pst.setString(13, us.getPrenom());
             pst.setString(14, us.getGenre());
+            
             pst.setDate(15, new java.sql.Date(us.getDateNaissance().getTime()));
+            //System.out.println(us.getDateNaissance());
+            //pst.setDate(15, us.getDateNaissance());
+            System.out.println("zzzmmmmmmm");
             System.out.println(pst.toString());
             
             pst.executeUpdate();
+            
+            sendMail(us);
             System.out.println("US ADD Bravo ");
-        } catch (SQLException ex) {
+        /*} catch (SQLException ex) {
             System.out.println(ex.getErrorCode());
             System.out.println("US Add Erreur !!!");
-        }
+        }*/
     }
     
     public void modifierUS(Utilisateur_Simple us, int id) {
@@ -82,6 +93,30 @@ public class GestionnaireUtilisateur_Simple extends GestionnaireUtilisateur{
                 System.out.println("US Modif Erreur !!!");
             }
     }
+    /*
+    public void modifier(Utilisateur_Simple us, int id) {
+            String qSql = "UPDATE utilisateurs SET mail=?,mdp=?, numTel=?, nom=?,prenom=?, genre=?WHERE id=?";
+            PreparedStatement pst = null;
+            try {
+                pst = cnx.prepareStatement(qSql);
+                
+                pst.setString(1, us.getMail());
+                pst.setString(2, us.getMdp());
+                pst.setString(3, us.getNumTel());
+
+                pst.setString(6, us.getImage());
+                pst.setString(7, us.getNom());
+                pst.setString(8, us.getPrenom());
+                pst.setString(9, us.getGenre());
+                pst.setInt(11, id);
+                
+                pst.executeUpdate();
+                System.out.println("US Modif Bravo ");
+            } catch (SQLException ex) {
+                System.out.println(ex.getErrorCode());
+                System.out.println("US Modif Erreur !!!");
+            }
+    }*/
     
     public List<Utilisateur_Simple> fetchUS (){
         List<Utilisateur_Simple> listP = new ArrayList<>();
