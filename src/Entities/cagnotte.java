@@ -15,6 +15,7 @@ import java.util.Objects;
 public class cagnotte {
     protected int id;
     protected String nom;
+    protected int id_categorie;
     protected Date date_de_creation;
     protected Date date_de_debut;
     protected Date date_de_fin;
@@ -27,8 +28,9 @@ public class cagnotte {
     public cagnotte() {
     }
     
-    public cagnotte(String nom, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire) {
+    public cagnotte(String nom, int id_categorie, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire) {
         this.nom = nom;
+        this.id_categorie = id_categorie;
         this.date_de_debut = date_de_debut;
         this.date_de_fin = date_de_fin;
         this.montant_demande = montant_demande;
@@ -36,8 +38,9 @@ public class cagnotte {
         this.id_proprietaire = id_proprietaire;
     }
     
-    public cagnotte(String nom, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire, int id_organisation) {
+    public cagnotte(String nom, int id_categorie, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire, int id_organisation) {
         this.nom = nom;
+        this.id_categorie = id_categorie;
         this.date_de_debut = date_de_debut;
         this.date_de_fin = date_de_fin;
         this.montant_demande = montant_demande;
@@ -46,9 +49,10 @@ public class cagnotte {
         this.id_organisation = id_organisation;
     }
     
-    public cagnotte(int id, String nom, Date date_de_creation, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire, int id_organisation) {
+    public cagnotte(int id, String nom, int id_categorie, Date date_de_creation, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire, int id_organisation) {
         this.id = id;
         this.nom = nom;
+        this.id_categorie = id_categorie;
         this.date_de_creation = date_de_creation;
         this.date_de_debut = date_de_debut;
         this.date_de_fin = date_de_fin;
@@ -58,8 +62,9 @@ public class cagnotte {
         this.id_organisation = id_organisation;
     }
     
-    public cagnotte(String nom, Date date_de_creation, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire, int id_organisation, int etat) {
+    public cagnotte(String nom, int id_categorie, Date date_de_creation, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire, int id_organisation, int etat) {
         this.nom = nom;
+        this.id_categorie = id_categorie;
         this.date_de_creation = date_de_creation;
         this.date_de_debut = date_de_debut;
         this.date_de_fin = date_de_fin;
@@ -70,9 +75,10 @@ public class cagnotte {
         this.etat = etat;
     }
 
-    public cagnotte(int id, String nom, Date date_de_creation, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire, int id_organisation, int etat) {
+    public cagnotte(int id, String nom, int id_categorie, Date date_de_creation, Date date_de_debut, Date date_de_fin, float montant_demande, float montant_actuel, int id_proprietaire, int id_organisation, int etat) {
         this.id = id;
         this.nom = nom;
+        this.id_categorie = id_categorie;
         this.date_de_creation = date_de_creation;
         this.date_de_debut = date_de_debut;
         this.date_de_fin = date_de_fin;
@@ -98,6 +104,16 @@ public class cagnotte {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public int getId_categorie() {
+        return id_categorie;
+    }
+
+    public void setId_categorie(int id_categorie) {
+        this.id_categorie = id_categorie;
+    }
+    
+    
 
     public Date getDate_de_creation() {
         return date_de_creation;
@@ -165,19 +181,21 @@ public class cagnotte {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + this.id;
-        hash = 53 * hash + Objects.hashCode(this.nom);
-        hash = 53 * hash + Objects.hashCode(this.date_de_creation);
-        hash = 53 * hash + Objects.hashCode(this.date_de_debut);
-        hash = 53 * hash + Objects.hashCode(this.date_de_fin);
-        hash = 53 * hash + Float.floatToIntBits(this.montant_demande);
-        hash = 53 * hash + Float.floatToIntBits(this.montant_actuel);
-        hash = 53 * hash + this.id_proprietaire;
-        hash = 53 * hash + this.id_organisation;
-        hash = 53 * hash + this.etat;
+        int hash = 7;
+        hash = 29 * hash + this.id;
+        hash = 29 * hash + Objects.hashCode(this.nom);
+        hash = 29 * hash + Objects.hashCode(this.date_de_creation);
+        hash = 29 * hash + Objects.hashCode(this.date_de_debut);
+        hash = 29 * hash + Objects.hashCode(this.date_de_fin);
+        hash = 29 * hash + Float.floatToIntBits(this.montant_demande);
+        hash = 29 * hash + Float.floatToIntBits(this.montant_actuel);
+        hash = 29 * hash + this.id_proprietaire;
+        hash = 29 * hash + this.id_organisation;
+        hash = 29 * hash + this.etat;
         return hash;
     }
+
+
 
     @Override
     public boolean equals(Object obj) {
@@ -226,9 +244,8 @@ public class cagnotte {
 
     @Override
     public String toString() {
-        return "cagnotte{" + "id=" + id + ", nom=" + nom + ", date_de_creation=" + date_de_creation + ", date_de_debut=" + date_de_debut + ", date_de_fin=" + date_de_fin + ", montant_demande=" + montant_demande + ", montant_actuel=" + montant_actuel + ", id_proprietaire=" + id_proprietaire + ", id_organisation=" + id_organisation + ", etat=" + etat + '}';
+        return "cagnotte{" + "id=" + id + ", nom=" + nom + "id_categorie=" + id_categorie + ", date_de_creation=" + date_de_creation + ", date_de_debut=" + date_de_debut + ", date_de_fin=" + date_de_fin + ", montant_demande=" + montant_demande + ", montant_actuel=" + montant_actuel + ", id_proprietaire=" + id_proprietaire + ", id_organisation=" + id_organisation + ", etat=" + etat + '}';
     }
     
-    
-    
+
 }
