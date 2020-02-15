@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="380.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UiInscriptionController">
+    <stylesheets>
+        <URL value="@/styles/uiinscription.css" />
+    </stylesheets>
+   <children>
+      <StackPane fx:id="stackInscri" prefHeight="550.0" prefWidth="380.0">
+         <children>
+            <FlowPane fx:id="Flowpane" alignment="CENTER" orientation="VERTICAL" prefHeight="550.0" prefWidth="380.0" rowValignment="TOP">
+               <children>
+                  <Label prefHeight="41.0" prefWidth="322.0" text="Inscription">
+                     <font>
+                        <Font name="Calibri" size="27.0" />
+                     </font>
+                  </Label>
+                  <Separator prefHeight="14.0" prefWidth="322.0" visible="false" />
+                  <JFXComboBox fx:id="CBType" onAction="#choixType" prefHeight="25.0" prefWidth="238.0" promptText=" Votre Type : " />
+                  <Separator prefHeight="14.0" prefWidth="322.0" visible="false" />
+                  <VBox fx:id="VBoxInscri" prefHeight="302.0" prefWidth="322.0" />
+                  <Separator prefHeight="4.0" prefWidth="322.0" visible="false" />
+                  <JFXButton fx:id="btInscri" onAction="#Inscri" prefHeight="18.0" prefWidth="67.0" stylesheets="@../styles/uiinscription.css" text="S'inscrire" />
+               </children>
+            </FlowPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
