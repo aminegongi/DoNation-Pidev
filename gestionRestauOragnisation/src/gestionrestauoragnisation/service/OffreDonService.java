@@ -5,6 +5,8 @@
  */
 package gestionrestauoragnisation.service;
 
+import Iservice.IService;
+import gestionrestauoragnisation.entities.AppelAuDon;
 import utilis.DataSource;
 import gestionrestauoragnisation.entities.OffreDon;
 import java.sql.Connection;
@@ -21,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author Ahmed Fourati
  */
-public class OffreDonService {
+public class OffreDonService implements IService<OffreDon> {
         Connection cn = DataSource.getInstance().getConnexion(); 
         
         public void ajouter(OffreDon od ){
@@ -46,7 +48,23 @@ public class OffreDonService {
         
         
     }
+    public void modifier(OffreDon p, int id) {
+        String qSql = "UPDATE publicationdon SET titre=?,description=?,nbreUp=?,etat=? WHERE (id=? and type='OffreDon')";
+        PreparedStatement pst = null;
         
+        try {
+            pst = cn.prepareStatement(qSql);
+            pst.setString(1, p.getTitre());
+            pst.setString(2, p.getDescription());
+            pst.setInt(3, p.getNbreUp());
+            pst.setInt(4, p.getEtat());
+            pst.setInt(5, id);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreDonService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }     
     
     
     
@@ -78,18 +96,18 @@ public class OffreDonService {
     public List<OffreDon> trierParDate(String type){
     List<OffreDon> list = this.afficher();
     if(type=="cr")
-        list.sort((OffreDon of1 ,OffreDon of2) -> of1.getDatePublicaton().compareTo(of2.getDatePublicaton()) );
+        list.sort((OffreDon of1 ,OffreDon of2) -> of1.getDatePublicaton().compareToIgnoreCase(of2.getDatePublicaton()) );
     else
-        list.sort((OffreDon of1 ,OffreDon of2) -> of2.getDatePublicaton().compareTo(of1.getDatePublicaton()) );
+        list.sort((OffreDon of1 ,OffreDon of2) -> of2.getDatePublicaton().compareToIgnoreCase(of1.getDatePublicaton()) );
 
             return list;
     }
     public List<OffreDon> trierParTitre(String type){
     List<OffreDon> list = this.afficher();
     if(type=="cr")
-        list.sort((OffreDon of1 ,OffreDon of2) -> of1.getTitre().compareTo(of2.getTitre()) );
+        list.sort((OffreDon of1 ,OffreDon of2) -> of1.getTitre().compareToIgnoreCase(of2.getTitre()) );
     else
-        list.sort((OffreDon of1 ,OffreDon of2) -> of2.getTitre().compareTo(of1.getTitre()) );
+        list.sort((OffreDon of1 ,OffreDon of2) -> of2.getTitre().compareToIgnoreCase(of1.getTitre()) );
 
             return list;
     }

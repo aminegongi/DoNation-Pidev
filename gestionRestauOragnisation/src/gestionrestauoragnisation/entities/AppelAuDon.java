@@ -11,7 +11,7 @@ import gestionrestauoragnisation.entities.PublicationDon;
  *
  * @author Ahmed Fourati
  */
-public class AppelAuDon extends PublicationDon{
+public class AppelAuDon extends PublicationDon {
     private int  nbrePlat ;
     private int etat  ; 
     

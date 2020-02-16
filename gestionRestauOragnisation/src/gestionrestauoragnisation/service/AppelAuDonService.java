@@ -5,9 +5,11 @@
  */
 package gestionrestauoragnisation.service;
 
+import Iservice.IService;
 import utilis.DataSource;
 import gestionrestauoragnisation.entities.AppelAuDon;
 import gestionrestauoragnisation.entities.OffreDon;
+import gestionrestauoragnisation.entities.Publicité;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,10 +24,10 @@ import java.util.logging.Logger;
  *
  * @author Ahmed Fourati
  */
-public class AppelAuDonService {
+public class AppelAuDonService implements IService<AppelAuDon>{
     Connection cn = DataSource.getInstance().getConnexion(); 
         
-        public void ajouter(AppelAuDon od ){
+        public void ajouter(AppelAuDon od ) {
         
     String requette = "INSERT INTO `publicationdon`(`type`, `titre`, `description`, `datePublication`, `nbreUp`, `nbrePlat`, `etat`) VALUES (?,?,?,?,?,?,?);" ; 
        
@@ -48,6 +50,25 @@ public class AppelAuDonService {
         
         
     }
+        
+        public void modifier(AppelAuDon p, int id) {
+        String qSql = "UPDATE publicationdon SET titre=?,description=?,nbreUp=?,nbrePlat=?,etat=? WHERE (id=? and type='AppelAuDon')";
+        PreparedStatement pst = null;
+        
+        try {
+            pst = cn.prepareStatement(qSql);
+            pst.setString(1, p.getTitre());
+            pst.setString(2, p.getDescription());
+            pst.setInt(3, p.getNbreUp());
+            pst.setInt(4, p.getNbrePlat());
+            pst.setInt(5, p.getEtat());
+            pst.setInt(6, id);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AppelAuDonService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    } 
         
     public List<AppelAuDon> afficher(){
     String sql = "SELECT `id`, `titre`, `description`, `datePublication`, `nbreUp`, `nbrePlat`, `etat` FROM `publicationdon` WHERE type='AppelAuDon'" ;

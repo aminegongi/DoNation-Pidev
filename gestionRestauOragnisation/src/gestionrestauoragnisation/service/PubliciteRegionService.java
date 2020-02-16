@@ -69,7 +69,7 @@ public class PubliciteRegionService {
     
         List<PubliciteRegion> list = new ArrayList<>() ;
         list= this.getInfo(p);
-        System.out.println(list);
+        
         Document doc = new Document();
   PdfWriter docWriter = null;
  
