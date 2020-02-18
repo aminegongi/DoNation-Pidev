@@ -12,7 +12,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,6 @@ public class GestionnaireCagnotte {
         c.setDate_de_creation(Date.valueOf(LocalDate.now()));
         c.setEtat(0);
         String requete = "INSERT INTO cagnotte (nom, id_categorie, date_de_creation, date_de_debut, date_de_fin, montant_demande, montant_actuel, id_proprietaire, id_organisation, etat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setString(1, c.getNom());
@@ -52,7 +50,6 @@ public class GestionnaireCagnotte {
     
     public void modifierDemande(cagnotte c){
         String requete = "UPDATE cagnotte SET nom = ?, id_categorie = ?, date_de_debut = ?, date_de_fin = ?, montant_demande = ?, montant_actuel = ? WHERE id = ?";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setString(1, c.getNom());
@@ -71,7 +68,6 @@ public class GestionnaireCagnotte {
     
     public void supprimerCagnotte(int id){
         String requete = "DELETE FROM cagnotte WHERE id = ?";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setInt(1, id);
@@ -86,7 +82,6 @@ public class GestionnaireCagnotte {
         c.setEtat(1);
         c.setId_organisation(12); //Tempo
         String requete = "UPDATE cagnotte SET etat = ?, id_organisation = ? WHERE id = ?";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setInt(1, c.getEtat());
@@ -100,13 +95,20 @@ public class GestionnaireCagnotte {
     }
     
     public void ajouterDon(cagnotte c, float x){
-        c.setMontant_actuel(c.getMontant_actuel() + x);
-        String requete = "UPDATE cagnotte SET montant_actuel = ? WHERE id = ?";
-        Statement st;
+        //ajouter participation
+        if(c.getEtat() == 0){
+            System.out.println("Don non ajouté: Cagnotte fermée!");
+            return;
+        }
+        float y = getMontantActuel(c);
+        c.setMontant_actuel(y + x);
+        c.setEtat(siMontantAcheve(c));
+        String requete = "UPDATE cagnotte SET montant_actuel = ?, etat = ? WHERE id = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setFloat(1, c.getMontant_actuel());
-            pst.setInt(2, c.getId());
+            pst.setInt(2, c.getEtat());
+            pst.setInt(3, c.getId());
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(GestionnaireCagnotte.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,7 +119,6 @@ public class GestionnaireCagnotte {
     public List<cagnotte> getCagnottes(){
         List<cagnotte> list = new ArrayList<>();
         String requete = "SELECT * FROM cagnotte";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
@@ -134,19 +135,53 @@ public class GestionnaireCagnotte {
     
     public cagnotte getCagnotte(int id){
         String requete = "SELECT * FROM cagnotte WHERE id = ?";
-        Statement st;
         cagnotte c = null;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
-            while(rs.next()){
-                c = new cagnotte(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getDate(5), rs.getDate(6), rs.getFloat(7), rs.getFloat(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));                
-            }
+            rs.next();
+            c = new cagnotte(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getDate(5), rs.getDate(6), rs.getFloat(7), rs.getFloat(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));                
             System.out.println("Cagnotte à été trouvé!");
         } catch (SQLException ex) {
             Logger.getLogger(GestionnaireCagnotte.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
+    }
+    
+    public float getMontantActuel(cagnotte c){
+        String requete = "SELECT montant_actuel FROM cagnotte WHERE id = ?";
+        float y = 0;
+        try {
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setFloat(1, c.getId());
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            y = rs.getFloat(1);                
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionnaireCagnotte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return y;
+    }
+    
+    public int siMontantAcheve(cagnotte c){
+        String requete = "SELECT montant_demande, montant_actuel FROM cagnotte WHERE id = ?";
+        float montant_demande = 0;
+        float montant_actuel = 0;
+        int etat = 1;
+        try {
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setInt(1, c.getId());
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            montant_demande = rs.getFloat(1);                
+            montant_actuel = rs.getFloat(2);
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionnaireCagnotte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (montant_demande <= montant_actuel){
+            etat = 0;
+        }
+        return etat;
     }
 }

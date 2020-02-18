@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,6 @@ public class GestionnaireCategorie {
 
     public void ajouterCategorie(categorie c){
         String requete = "INSERT INTO categorie (nom, description) VALUES (?, ?)";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setString(1, c.getNom());
@@ -37,7 +35,6 @@ public class GestionnaireCategorie {
     
     public void modifierCategorie(categorie c){
         String requete = "UPDATE categorie SET nom = ?, description = ? WHERE id = ?";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setString(1, c.getNom());
@@ -51,7 +48,6 @@ public class GestionnaireCategorie {
     
     public void supprimerCategorie(int id){
         String requete = "DELETE FROM categorie WHERE id = ?";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setInt(1, id);
@@ -64,7 +60,6 @@ public class GestionnaireCategorie {
     public List<categorie> getCategories(){
         List<categorie> list = new ArrayList<>();
         String requete = "SELECT * FROM categorie";
-        Statement st;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
@@ -79,16 +74,14 @@ public class GestionnaireCategorie {
     }
     
     public categorie getCategorie(int id){
-                String requete = "SELECT * FROM categorie WHERE id = ?";
-        Statement st;
+        String requete = "SELECT * FROM categorie WHERE id = ?";
         categorie c = null;
         try {
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
-            while(rs.next()){
-                c = new categorie(rs.getInt(1), rs.getString(2), rs.getString(3));                
-            }
+            rs.next();
+            c = new categorie(rs.getInt(1), rs.getString(2), rs.getString(3));
             System.out.println("Categorie à été trouvé!");
         } catch (SQLException ex) {
         }
