@@ -9,20 +9,52 @@
 {
     -fx-background-color : tansparent;
     -fx-border-color: #D98532;//#355ECE;
-    -fx-text-fill:  white;
+    -fx-text-fill:  #ffffff;
 }
 .button:hover
 {
-    -fx-background-color : gray ;
-    -fx-text-fill:  white;
+    -fx-background-color : #e47202 ;
+    -fx-text-fill:  #ffffff;
 }
 .button:pressed
 {
-    -fx-background-color : #B6B6B6 ;
-    -fx-text-fill: white;
+    -fx-background-color : #e47202 ;
+    -fx-text-fill: #ffffff;
 }
-.button:active
+
+.button2
 {
-    -fx-background-color : #B6B6B6 ;
-    -fx-text-fill: white;
+    -fx-background-color : #e47202;
+    -fx-border-color: #e47202;//#355ECE;
+    -fx-text-fill:  #ffffff;
+}
+
+.buttonOrange
+{
+    -fx-background-color : transparent;
+    -fx-border-color: #D98532;//#355ECE;
+    -fx-text-fill:  #ffffff;
+}
+
+.buttonFullOrange
+{
+    -fx-background-color :  #D98532;
+    -fx-border-color: #D98532;//#355ECE;
+    -fx-text-fill:  #ffffff;
+}
+.buttonFullOrange:hover
+{
+    -fx-background-color : #e47202 ;
+    -fx-text-fill:  #ffffff;
+}
+.buttonFullOrange:pressed
+{
+    -fx-background-color : #e47202 ;
+    -fx-text-fill: #ffffff;
+}
+
+.scroll-bar
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }

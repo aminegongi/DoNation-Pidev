@@ -30,31 +30,57 @@ public class GestionnaireUtilisateur {
 
     Connection cnx = DataSource.getInstance().getConnection();
 
-    // JAVA return -1= login Mail MDP incorrect / -2=compte disabled /-3=compte non encore activer / else ID user
-    // Mysql champ val 0= disabled par admin / 1=activer /-1=non encore activer 
-    public int loginU(String mail, String mdp) {
-
-        String qSql = "select id,mail,enabled from utilisateurs where mail='" + mail + "' AND mdp='" + mdp + "' Limit 1 ";
+    public boolean  mailMdp(String mail, String mdp){
+        String qSql = "select mdp from utilisateurs where mail='" + mail + "' Limit 1 ";
         try {
             Statement st = cnx.createStatement();
             //pst.setString(1, mail);
             st.executeQuery(qSql);
             ResultSet rs = st.executeQuery(qSql);
             while (rs.next()) {
-                if (rs.getInt(3) == 0) {
-                    return -2;
-                } else if (rs.getInt(3) == -1) {
-                    return -3;
-                } else {
-                    return rs.getInt(1);
-                }
+                if(BCrypt.checkpw(mdp, rs.getString(1)))
+                    return true;
             }
             System.out.println("U login Bravo ");
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             System.out.println(ex.getErrorCode());
             System.out.println("U login Erreur !!!");
         }
+        return false;
+    }
+    // JAVA return -1= login Mail MDP incorrect / -2=compte disabled /-3=compte non encore activer / else ID user
+    // Mysql champ val 0= disabled par admin / 1=activer /-1=non encore activer 
+    
+    public int loginU(String mail, String mdp) {
+        Boolean m=mailMdp(mail, mdp);
+        System.out.println("**********************");
+        System.out.println(m);
+        if(m){
+            String qSql = "select id,mail,enabled from utilisateurs where mail='" + mail + "' Limit 1 ";
+            try {
+                Statement st = cnx.createStatement();
+                //pst.setString(1, mail);
+                st.executeQuery(qSql);
+                ResultSet rs = st.executeQuery(qSql);
+                while (rs.next()) {
+                    if (rs.getInt(3) == 0) {
+                        return -2;
+                    } else if (rs.getInt(3) == -1) {
+                        return -3;
+                    } else {
+                        return rs.getInt(1);
+                    }
+                }
+                System.out.println("U login Bravo ");
+            } catch (SQLException ex) {
+                System.out.println(ex.getErrorCode());
+                System.out.println("U login Erreur !!!");
+            }
+            return -1;            
+        }
         return -1;
+
     }
 
     public boolean checkMail(String mail) {
@@ -244,7 +270,7 @@ public class GestionnaireUtilisateur {
         properties.put("mail.smtp.port", "587");
 
         //Your gmail address
-        String myAccountEmail = "aminegongiesprit@gmail.com";
+        String myAccountEmail = "Donation ICT <aminegongiesprit@gmail.com>";
         //Your gmail password
         String password = "Amine1998";
 
@@ -267,7 +293,6 @@ public class GestionnaireUtilisateur {
         } catch (MessagingException ex) {
             System.out.println("Mail Confirm key Problem");
         }
-        System.out.println("Message sent successfully");
     }
 
     private static Message prepareMessage(Session session, String myAccountEmail, String recepient, Utilisateur user) {

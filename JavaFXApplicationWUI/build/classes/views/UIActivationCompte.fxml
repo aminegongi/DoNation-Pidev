@@ -9,31 +9,30 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="380.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UIActivationCompteController">
+<AnchorPane id="AnchorPane" prefHeight="592.0" prefWidth="407.0" style="-fx-background-color: #f0f0f0;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UIActivationCompteController">
     <stylesheets>
         <URL value="@/styles/uiactivationcompte.css" />
     </stylesheets>
    <children>
-      <FlowPane alignment="CENTER" columnHalignment="RIGHT" orientation="VERTICAL" prefHeight="550.0" prefWidth="380.0" rowValignment="TOP">
+      <Pane layoutX="4.0" layoutY="6.0" prefHeight="581.0" prefWidth="398.0" style="-fx-background-color: #f0f0f0;">
          <children>
-            <ImageView fitHeight="76.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="44.0" fitWidth="198.0" layoutX="247.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Novant%20logo.png" />
+                  <Image url="@../images/DoNation.png" />
                </image>
             </ImageView>
             <Separator prefHeight="32.0" prefWidth="254.0" visible="false" />
-            <Text fill="#da8701" strokeType="OUTSIDE" strokeWidth="0.0" text="Activer Votre Compte" wrappingWidth="253.79036712646484" />
             <Separator prefHeight="98.0" prefWidth="253.0" visible="false" />
-            <JFXTextField fx:id="txtMail" focusColor="#0040ff" labelFloat="true" promptText="Votre @ Mail :" />
+            <JFXTextField fx:id="txtMail" focusColor="#0040ff" labelFloat="true" layoutX="58.0" layoutY="245.0" prefHeight="32.0" prefWidth="288.0" promptText="Votre @ Mail :" />
             <Label fx:id="labelMail" text="Already Exist Mail ! " visible="false" />
             <Separator prefHeight="13.0" prefWidth="253.0" visible="false" />
-            <JFXPasswordField fx:id="txtCodeAct" labelFloat="true" promptText="Code Activation : " />
+            <JFXPasswordField fx:id="txtCodeAct" labelFloat="true" layoutX="58.0" layoutY="322.0" prefHeight="32.0" prefWidth="288.0" promptText="Code Activation : " />
             <Separator prefHeight="35.0" prefWidth="253.0" visible="false" />
-            <Button fx:id="btnActivation" mnemonicParsing="false" onAction="#ActivationCompte" prefHeight="34.0" prefWidth="99.0" stylesheets="@../styles/uilogin.css" text="Activer" />
+            <Button fx:id="btnActivation" layoutX="247.0" layoutY="416.0" mnemonicParsing="false" onAction="#ActivationCompte" prefHeight="34.0" prefWidth="99.0" stylesheets="@../styles/uilogin.css" text="Activer" />
+            <Label layoutX="22.0" layoutY="82.0" prefHeight="44.0" prefWidth="288.0" style="-fx-font-size: 27; -fx-font-family: calibri;" stylesheets="@../styles/uiactivationcompte.css" text="Activer Votre Compte" />
          </children>
-      </FlowPane>
+      </Pane>
    </children>
 </AnchorPane>

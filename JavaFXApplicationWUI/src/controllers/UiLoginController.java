@@ -64,7 +64,8 @@ public class UiLoginController implements Initializable {
     @FXML
     private void Login(ActionEvent event) {
         GestionnaireUtilisateur gu = new GestionnaireUtilisateur();
-        int l = gu.loginU(txtMail.getText(), txtMdp.getText());
+        
+        int l = gu.loginU(txtMail.getText(),  txtMdp.getText());
         Alert al = new Alert(Alert.AlertType.WARNING, "Compte désactiver , Call l'administrateur", ButtonType.OK);
         Alert al1 = new Alert(Alert.AlertType.WARNING, "Activer votre Compte Redirection ..", ButtonType.OK);
         Alert al2 = new Alert(Alert.AlertType.ERROR, "Invalid Mail ou Mot de Pass", ButtonType.OK);

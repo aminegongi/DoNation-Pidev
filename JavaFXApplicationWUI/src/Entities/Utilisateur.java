@@ -10,6 +10,7 @@ import java.util.Objects;
 import Utils.Adresse;
 import java.sql.Timestamp;
 import java.util.UUID;
+import org.mindrot.jbcrypt.BCrypt;
 /**
  *
  * @author Amine Gongi
@@ -27,15 +28,25 @@ public class Utilisateur {
     protected int enabled;
     protected String confirmation_token;
     protected Date password_requested_at;
-
     protected String nom;
+    protected Date dateInscription;
+
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public void setDateInscription(Date inscription) {
+        this.dateInscription = inscription;
+    }
+    
 
     public Utilisateur() {
     }
 
     public Utilisateur(String mail, String mdp, String salt, String nom) {
         this.mail = mail;
-        this.mdp = mdp;
+        String mCrypt = BCrypt.hashpw(mdp, BCrypt.gensalt(12));
+        this.mdp = mCrypt;
         this.salt = salt;
         this.nom = nom;
     }
@@ -51,7 +62,8 @@ public class Utilisateur {
     public Utilisateur(int id, String mail, String mdp, String salt, String numTel, Adresse adresse, String image, int pointXP, int enabled, String confirmation_token, Date password_requested_at, String nom) {
         this.id = id;
         this.mail = mail;
-        this.mdp = mdp;
+        String mCrypt = BCrypt.hashpw(mdp, BCrypt.gensalt(5));
+        this.mdp = mCrypt;
         this.salt = salt;
         this.numTel = numTel;
         this.adresse = adresse;
@@ -65,8 +77,11 @@ public class Utilisateur {
     
     public Utilisateur(String mail, String mdp, String salt, String numTel, Adresse adresse, String image, int pointXP, String nom) {
         this.mail = mail;
-        this.mdp = mdp;
-        this.salt = salt;
+        String mCrypt = BCrypt.hashpw(mdp, BCrypt.gensalt(5));
+        this.mdp = mCrypt;
+
+        
+        this.salt = UUID.randomUUID().toString().substring(1, 15);
         this.numTel = numTel;
         this.adresse = adresse;
         this.image = image;

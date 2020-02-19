@@ -140,7 +140,7 @@ public class GestionnaireUtilisateur_Simple extends GestionnaireUtilisateur{
                 us.setNom(rs.getString(10));
                 us.setPrenom(rs.getString(11));
                 us.setGenre(rs.getString(12));
-                
+                us.setDateNaissance(rs.getDate(13));
                 //us.setDateNaissance(rs.getDate(12));
                 
                 listP.add(us);
@@ -152,9 +152,9 @@ public class GestionnaireUtilisateur_Simple extends GestionnaireUtilisateur{
         return listP;
     }
     
-    public Utilisateur_Simple fetchOneUS (int id){
+    public Utilisateur_Simple fetchOneUS (int id) {
         Utilisateur_Simple OneUS = new Utilisateur_Simple();
-        String qSql="select id,mail, numTel, A_pays, A_ville, image, pointXP, enabled, confirm_token,nom, prenom, genre, dateNaissance from utilisateurs where id='"+id+"' ";
+        String qSql="select id,mail, numTel, A_pays, A_ville, image, pointXP, enabled, confirm_token,nom, prenom, genre, dateNaissance,dateInscription from utilisateurs where id='"+id+"' ";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(qSql);
@@ -168,16 +168,16 @@ public class GestionnaireUtilisateur_Simple extends GestionnaireUtilisateur{
                 OneUS.setPointXP(rs.getInt(7));
                 OneUS.setEnabled(rs.getInt(8));
                 OneUS.setConfirmation_token(rs.getString(9));
-                OneUS.setPrenom(rs.getString(10));
-                OneUS.setGenre(rs.getString(11));
-                
-                //us.setDateNaissance(rs.getDate(12));
-                
+                OneUS.setNom(rs.getString(10));
+                OneUS.setPrenom(rs.getString(11));
+                OneUS.setGenre(rs.getString(12));
+                OneUS.setDateNaissance(rs.getDate(13));
+                OneUS.setDateInscription(rs.getDate(14));
             }
             System.out.println("US Select Bravo ");
-        } catch (SQLException ex) {
+        } catch ( SQLException ex) {
             System.out.println("US Select Erreur !!!");
-        }   
+        }  
         return OneUS;
     }
     

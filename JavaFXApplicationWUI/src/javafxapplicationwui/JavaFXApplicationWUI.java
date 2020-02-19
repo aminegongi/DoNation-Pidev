@@ -99,13 +99,14 @@ public class JavaFXApplicationWUI extends Application {
         
         //Graphique UI login Inscri + Activation
         
-         Parent root = FXMLLoader.load(getClass().getResource("/views/UiLogin.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/views/UiLogin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/DashbordAdmin.fxml"));
 
-         Scene scene = new Scene(root);
+        Scene scene = new Scene(root);
+        stage.setResizable(false); // taille fixe
 
-         //stage.setScene(scene);
          
-         stage.initStyle(StageStyle.UTILITY);
+         /*stage.initStyle(StageStyle.UTILITY);
          root.setOnMousePressed((MouseEvent event)-> {
              xOffset = event.getSceneX();
              yOffset = event.getSceneY();
@@ -114,9 +115,14 @@ public class JavaFXApplicationWUI extends Application {
          root.setOnMouseDragged((MouseEvent event)-> {
              stage.setX(event.getSceneX()-xOffset);
              stage.setY(event.getSceneY()-xOffset);
-         });
+         });*/
+         
          stage.setScene(scene);
          stage.show();
+         
+         //Utilisateur u = new Utilisateur("amine.gongi@esprit.tn", "aa", "ccc", "ddd");
+         //GestionnaireUtilisateur g = new GestionnaireUtilisateur();
+         //g.sendMail(u);
          
     }
 
