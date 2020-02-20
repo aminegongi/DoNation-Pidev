@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="511.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherPubliciteController">
+   <children>
+      <TableView fx:id="tableViewPublicite" editable="true" layoutX="56.0" layoutY="73.0" prefHeight="397.0" prefWidth="681.0">
+        <columns>
+          <TableColumn fx:id="titre" onEditCommit="#modifierTitre" prefWidth="108.0" text="Titre" />
+          <TableColumn fx:id="marque" onEditCommit="#modifierMarque" prefWidth="184.0" text="Marque" />
+            <TableColumn fx:id="description" onEditCommit="#modifierDescription" prefWidth="158.0" text="Description" />
+            <TableColumn fx:id="dateAjout" prefWidth="230.0" text="Date D'ajout" />
+        </columns>
+      </TableView>
+      <Button fx:id="supprimerPubliciteButton" layoutX="646.0" layoutY="485.0" mnemonicParsing="false" onAction="#supprimerPublicite" text="Supprimer" />
+      <Button fx:id="goToAjouterPubliciter" layoutX="656.0" layoutY="38.0" mnemonicParsing="false" onAction="#goToAjouterPublicite" text="Ajouter" />
+   </children>
+</AnchorPane>
