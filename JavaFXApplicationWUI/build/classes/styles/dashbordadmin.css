@@ -1,0 +1,185 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.button
+{
+    -fx-background-color : transparent;
+    -fx-border-color: #D98532; /*#355ECE;*/
+    -fx-text-fill:  #ffffff;
+}
+.button:hover
+{
+    -fx-background-color : #e47202 ;
+    -fx-text-fill:  #ffffff;
+}
+.button:pressed
+{
+    -fx-background-color : #e47202 ;
+    -fx-text-fill: #ffffff;
+}
+
+.button2
+{
+    -fx-background-color : #e47202;
+    -fx-border-color: #e47202; /*#355ECE;*/
+    -fx-text-fill:  #ffffff;
+}
+
+.button1
+{
+    -fx-background-color : #2cb687;
+    -fx-border-radius: 10;
+    -fx-border-color: #2cb687; /*#355ECE;*/
+    -fx-text-fill:  #ffffff;
+}
+
+.buttonMessage
+{
+    -fx-background-color : #FFF;
+    -fx-border-radius: 10;
+    -fx-border-color: #FFF; /*#355ECE;*/
+    -fx-text-fill:  #2cb687;
+    
+}
+.buttonMessage:hover
+{
+    -fx-background-color : #2cb687;
+    -fx-text-fill:  #ffffff;
+}
+
+.button1:hover
+{
+    -fx-background-color : #0e5a40;
+    -fx-text-fill:  #ffffff;
+}
+.buttonOrange
+{
+    -fx-background-color : transparent;
+    -fx-border-color: #D98532; /*#355ECE;*/
+    -fx-text-fill:  #ffffff;
+}
+
+.buttonFullOrange
+{
+    -fx-background-color :  #D98532;
+    -fx-border-color: #D98532; /*#355ECE;*/
+    -fx-text-fill:  #ffffff;
+}
+.buttonFullOrange:hover
+{
+    -fx-background-color : #e47202 ;
+    -fx-text-fill:  #ffffff;
+}
+.buttonFullOrange:pressed
+{
+    -fx-background-color : #e47202 ;
+    -fx-text-fill: #ffffff;
+}
+
+.scroll-bar
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.jfx-list-cell:selected {
+    -fx-background-color: #D98532; 
+}
+
+.jfx-list-cell {
+    -fx-background-insets: 2;
+}
+
+.jfx-list-cell .jfx-rippler {
+    -fx-rippler-fill: RED;
+}
+
+.jfx-list-cell:hover {
+    -fx-background-color: #e47202; 
+}
+
+.jfx-list-view {
+    -fx-background-insets: 0;
+    -fx-cell-vertical-margin: 10.0;
+    -fx-vertical-gap: 10 ; 
+}
+.vbox
+{
+    
+    -fx-background-color : #dddddd; 
+    -fx-border-color : #D98532;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+ 
+}
+
+.vbox:hover
+{
+    
+    -fx-background-color : #dddddd; 
+    -fx-border-color : #D98532;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    
+}
+
+.titre{
+-fx-color: #dddddd;
+-fx-font-weight: bold;
+-fx-font-size: 20px;
+-fx-padding: 25px 50px 10px 40px;
+
+}
+
+.buttonBox{
+    -fx-background-color : #000080;
+    
+}
+
+.vbox .button{
+    
+    -fx-background-color : #ffffff;
+    -fx-border-color : #45969b;
+    -fx-font-size: 15px;
+
+}
+
+.vbox .button:hover{
+-fx-background-color : #45969b;
+    -fx-font-size: 15px;
+
+}
+
+ .desc{
+    -fx-font-size: 15px;
+    -fx-padding-left: 30px;
+    -fx-padding-right: 30px;
+
+}
+
+.pbParLbl{
+    -fx-font-weight: bold;
+}
+.mailLbl{
+    -fx-font-size: 13px;
+}
+
+.aimeLbl{
+    -fx-font-size: 13px;
+}
+
+.hbox{
+      -fx-margin-top: 500px;
+      -fx-padding-right: 10px;
+      -fx-padding-bottom: 10px;
+      -fx-padding-left: 10px;
+
+}
+
+.flouPane{
+    -fx-background-color : transparent;
+}
