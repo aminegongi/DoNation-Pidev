@@ -5,13 +5,22 @@
  */
 package controllers;
 
+import Entities.Utilisateur;
 import Entities.Utilisateur_Simple;
 import Services.GestionnaireHistoriqueConnexion;
 import Services.GestionnaireUtilisateur;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,12 +36,24 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
+import com.github.sarxos.webcam.Webcam;
+import Services.WebCamService;
+import Services.WebCamView;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.image.ImageView;
+import javax.imageio.ImageIO;
+
 /**
  * FXML Controller class
  *
  * @author Amine Gongi
  */
 public class ProfilUserController implements Initializable {
+    
+    private WebCamService service ;
+    
     @FXML
     private StackPane rootPaneM;
     @FXML
@@ -55,15 +76,67 @@ public class ProfilUserController implements Initializable {
     @FXML
     private Hyperlink HyHistoCnx;
     
+    List<String> listFichier;
+    
+    String role = HomeFXMLController.isUserRole;
+    @FXML
+    private JFXButton webcamTake;
+    @FXML
+    private Pane webcamPane;
+    @FXML
+    private ImageView imgPrevWeb;
+    @FXML
+    private Pane paneNoir;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        paneNoir.setVisible(false);
+        webcamPane.setVisible(false);
+        listFichier= new ArrayList<>();
+        listFichier.add("*.png");
+        listFichier.add("*.jpg");
+        System.out.println(role);
         flag = false;
-        //Utilisateur_Simple us = (Utilisateur_Simple) UiLoginController.uh ;
-        nom.setText(UiLoginController.uh.getNom());
-        prenom.setText(UiLoginController.uh.getNom());
+        if(role.equals("us"))
+        {
+            System.out.println(HomeFXMLController.u);
+            nom.setText(HomeFXMLController.u.getNom());
+            prenom.setText(HomeFXMLController.u.getPrenom());
+            File file = new File("./src/images/"+HomeFXMLController.u.getImage());
+            Image i= new Image(file.toURI().toString());
+            circleImage.setFill(new ImagePattern(i));
+        }
+        else if(role.equals("org"))
+        {
+            System.out.println(HomeFXMLController.o);
+            nom.setText(HomeFXMLController.o.getNom());
+            prenom.setVisible(false);
+            File file = new File("./src/images/"+HomeFXMLController.o.getImage());
+            Image i= new Image(file.toURI().toString());
+            circleImage.setFill(new ImagePattern(i));
+        }
+        else if(role.equals("ent"))
+        {
+            System.out.println(HomeFXMLController.e);
+            nom.setText(HomeFXMLController.e.getNom());
+            prenom.setVisible(false);
+            File file = new File("./src/images/"+HomeFXMLController.e.getImage());
+            Image i= new Image(file.toURI().toString());
+            circleImage.setFill(new ImagePattern(i));
+        }
+        else if(role.equals("resto"))
+        {
+            System.out.println(HomeFXMLController.r);
+            nom.setText(HomeFXMLController.r.getNom());
+            prenom.setVisible(false);
+            File file = new File("./src/images/"+HomeFXMLController.r.getImage());
+            Image i= new Image(file.toURI().toString());
+            circleImage.setFill(new ImagePattern(i));
+        }
+//        nom.setText(UiLoginController.uh.getNom());
+//        prenom.setText(UiLoginController.uh.getNom());
     }    
 
      @FXML
@@ -74,7 +147,6 @@ public class ProfilUserController implements Initializable {
             System.out.println("bye");
             paneSide.setVisible(true);
         }
-
     }
 
     @FXML
@@ -88,30 +160,85 @@ public class ProfilUserController implements Initializable {
     }
 
     @FXML
-    private void uploadPhoto(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-
-        fileChooser.setTitle("Open Resource File");
-
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", "*.png","*.jpg"));
-
-        File f=fileChooser.showOpenDialog(null);
-
-        System.out.println(f.toURI().toString());
-
-        String chemin = f.getPath();
-
-        Image i= new Image(f.toURI().toString());
-        
+    private void uploadPhoto(ActionEvent event) throws FileNotFoundException, IOException {
+        FileChooser fc = new FileChooser() ; 
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", listFichier));
+        File f = fc.showOpenDialog(null);
+        if(f !=null){
+            System.out.println("Image selectionnée"+f.getAbsolutePath());
+            InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(new File(f.getAbsolutePath()));
+//             System.out.println("Working Directory = " +
+//              System.getProperty("user.dir"));
+            System.out.println("nomfichier"+f.getName());
+            os = new FileOutputStream(new File("./src/images/"+f.getName()));
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+            System.out.println("copyyyyyy");
+            
+             
+        } finally {
+            is.close();
+            os.close();
+        }
+           
+        File file = new File("./src/images/"+f.getName());
+//            System.out.println(file.toURI().toString());
+        //imagePublicitePreview.setImage(new Image(file.toURI().toString()));
+        //imagePublicite=f.getName() ;
+        Image i= new Image(file.toURI().toString());
         circleImage.setFill(new ImagePattern(i));
         GestionnaireUtilisateur gu = new GestionnaireUtilisateur();
-        gu.setImage(chemin, UiLoginController.uh.getId());
+        gu.setImage(f.getName(), UiLoginController.uh.getId());
+        }
+        else if (f ==null){
+            System.out.println("Erreur chargement de l'image");
+        }
     }
 
     @FXML
     private void PrintHistoCnx(ActionEvent event) {
         GestionnaireHistoriqueConnexion ghc = new GestionnaireHistoriqueConnexion();
         ghc.RapportHCbyUser(UiLoginController.uh);
+    }
+
+    @FXML
+    private void openWebcam(ActionEvent event) {
+        /*Webcam cam = Webcam.getWebcams().get(0);
+        service = new WebCamService(cam);
+        WebCamView view = new WebCamView(service);
+        webcamPane.setVisible(true);
+        webcamPane.getChildren().add(view.getView());*/
+        Webcam wb =Webcam.getWebcams().get(1);
+        paneNoir.setVisible(true);
+        webcamPane.setVisible(true);
+        wb.open();
+        String name = UUID.randomUUID().toString().substring(1, 8)+".jpg";
+        File f= new File("src/images/"+name);
+
+        try {
+            ImageIO.write(wb.getImage(),"JPG" ,f);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        System.out.println("Ok");
+
+        Image i =new Image(f.toURI().toString());
+
+        imgPrevWeb.setImage(i);
+
+        String chemin=f.getAbsolutePath();
+        System.out.println(chemin);
+        
+        circleImage.setFill(new ImagePattern(i));
+        GestionnaireUtilisateur gu = new GestionnaireUtilisateur();
+        gu.setImage(f.getName(), UiLoginController.uh.getId());
     }
     
 }

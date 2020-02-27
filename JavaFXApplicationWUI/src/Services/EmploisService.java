@@ -6,6 +6,7 @@
 package Services;
 
 import Entities.Emplois;
+import Entities.Utilisateur;
 import ISevices.IServiceEmplois;
 import Utils.*;
 import java.sql.Connection;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -134,10 +136,33 @@ public class EmploisService implements IServiceEmplois{
                String TypeDemploi=rs.getString("TypeDemploi");
                String TypeContrat=rs.getString("TypeContrat");
                int IdCategorie=rs.getInt("idcategorie");
+               
                Emplois p=new Emplois(id, titre, description, photo, salaire, emplacement, TypeDemploi, TypeContrat,IdCategorie);
      arr.add(p);
      }
     return arr;    }
+    
+    public List<Emplois> readAll1() throws SQLException {
+    List<Emplois> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from emplois");
+     while (rs.next()) {                
+               int id=rs.getInt(1);
+               String titre=rs.getString("titre");
+               String description=rs.getString("description");
+               String photo=rs.getString("Photo");
+               double salaire=rs.getDouble("salaire");
+               String emplacement=rs.getString("emplacement");
+               String TypeDemploi=rs.getString("TypeDemploi");
+               String TypeContrat=rs.getString("TypeContrat");
+               int IdCategorie=rs.getInt("idcategorie");
+               GestionnaireUtilisateur gu = new GestionnaireUtilisateur();
+               Utilisateur  user= gu.fetchOneUS(rs.getInt("id_utilisateur"));
+               Emplois p=new Emplois(id, titre, description, photo, salaire, emplacement, TypeDemploi, TypeContrat,IdCategorie,user);
+     arr.add(p);
+     }
+    return arr;    }
+    
     
     
     
@@ -158,7 +183,95 @@ public class EmploisService implements IServiceEmplois{
                Emplois p=new Emplois(id, titre, description, photo, salaire, emplacement, TypeDemploi, TypeContrat,IdCategorie);
      arr.add(p);
      }
+    return arr;    } 
+     
+     
+     
+     
+     
+     
+     
+      public List<Emplois> readidmax(int idu) throws SQLException {
+    List<Emplois> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("SELECT MAX(id) FROM emplois");
+     while (rs.next()) {                
+               int id=rs.getInt(1);
+               String titre=rs.getString("titre");
+               String description=rs.getString("description");
+               String photo=rs.getString("Photo");
+               double salaire=rs.getDouble("salaire");
+               String emplacement=rs.getString("emplacement");
+               String TypeDemploi=rs.getString("TypeDemploi");
+               String TypeContrat=rs.getString("TypeContrat");
+               int IdCategorie=rs.getInt("idcategorie");
+               Emplois p=new Emplois(id, titre, description, photo, salaire, emplacement, TypeDemploi, TypeContrat,IdCategorie);
+     arr.add(p);
+     }
     return arr;    }
+     
+     
+     public List<Emplois> readAllbytype(String idu) throws SQLException {
+    List<Emplois> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from emplois where TypeDemploi = '"+idu+"'");
+    while (rs.next()) {                
+               int id=rs.getInt(1);
+               String titre=rs.getString("titre");
+               String description=rs.getString("description");
+               String photo=rs.getString("Photo");
+               double salaire=rs.getDouble("salaire");
+               String emplacement=rs.getString("emplacement");
+               String TypeDemploi=rs.getString("TypeDemploi");
+               String TypeContrat=rs.getString("TypeContrat");
+               int IdCategorie=rs.getInt("idcategorie");
+               GestionnaireUtilisateur gu = new GestionnaireUtilisateur();
+               Utilisateur  user= gu.fetchOneUS(rs.getInt("id_utilisateur"));
+               Emplois p=new Emplois(id, titre, description, photo, salaire, emplacement, TypeDemploi, TypeContrat,IdCategorie,user);
+     arr.add(p);
+     }
+    return arr;    }
+      public List<Emplois> readAllbyemplacement(String idu) throws SQLException {
+    List<Emplois> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from emplois where emplacement = '"+idu+"'");
+    while (rs.next()) {                
+               int id=rs.getInt(1);
+               String titre=rs.getString("titre");
+               String description=rs.getString("description");
+               String photo=rs.getString("Photo");
+               double salaire=rs.getDouble("salaire");
+               String emplacement=rs.getString("emplacement");
+               String TypeDemploi=rs.getString("TypeDemploi");
+               String TypeContrat=rs.getString("TypeContrat");
+               int IdCategorie=rs.getInt("idcategorie");
+               GestionnaireUtilisateur gu = new GestionnaireUtilisateur();
+               Utilisateur  user= gu.fetchOneUS(rs.getInt("id_utilisateur"));
+               Emplois p=new Emplois(id, titre, description, photo, salaire, emplacement, TypeDemploi, TypeContrat,IdCategorie,user);
+     arr.add(p);
+     }
+    return arr;    }
+      public List<Emplois> readAllbytypecontrat(String idu) throws SQLException {
+    List<Emplois> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from emplois where TypeContrat = '"+idu+"'");
+    while (rs.next()) {                
+               int id=rs.getInt(1);
+               String titre=rs.getString("titre");
+               String description=rs.getString("description");
+               String photo=rs.getString("Photo");
+               double salaire=rs.getDouble("salaire");
+               String emplacement=rs.getString("emplacement");
+               String TypeDemploi=rs.getString("TypeDemploi");
+               String TypeContrat=rs.getString("TypeContrat");
+               int IdCategorie=rs.getInt("idcategorie");
+               GestionnaireUtilisateur gu = new GestionnaireUtilisateur();
+               Utilisateur  user= gu.fetchOneUS(rs.getInt("id_utilisateur"));
+               Emplois p=new Emplois(id, titre, description, photo, salaire, emplacement, TypeDemploi, TypeContrat,IdCategorie,user);
+     arr.add(p);
+     }
+    return arr;    }
+     
     
     public Boolean findById(int id) throws SQLException {
         String req = "select * from emplois where id = ?";
@@ -182,6 +295,26 @@ public class EmploisService implements IServiceEmplois{
         list.sort((Emplois o1 ,Emplois o2)->o1.getTitre().compareToIgnoreCase(o2.getTitre()));
     else
         list.sort((Emplois o1 ,Emplois o2)->o2.getTitre().compareToIgnoreCase(o1.getTitre()));
+        return list; 
+    }
+    
+    
+    public List<Emplois> trierid(int t) throws SQLException{
+    List<Emplois> list = this.readAll1();
+    if(t==0)
+        list.sort((Emplois o1 ,Emplois o2)->o1.getId()-(o2.getId()));
+    else
+     list.sort((Emplois o1 ,Emplois o2)->o2.getId()-(o1.getId()));
+        return list; 
+    }
+      
+      
+    public List<Emplois> triersalaire(int t) throws SQLException{
+    List<Emplois> list = this.readAll1();
+    if(t==0)
+        list.sort((Emplois o1 ,Emplois o2)->(int) (o1.getSalaire()-(o2.getSalaire())));
+    else
+     list.sort((Emplois o1 ,Emplois o2)->(int) (o2.getSalaire()-(o1.getSalaire())));
         return list; 
     }
     
@@ -231,6 +364,101 @@ public class EmploisService implements IServiceEmplois{
 
         } catch (Exception ex) {
             System.out.println("Mail Confirm key Problem");
+        }
+    }
+    
+        
+        //SELECT count(*) FROM `utilisateurs` GROUP BY role
+    public HashMap<String, Integer> nbComptetypeemploi() {
+        HashMap<String, Integer> hm = new HashMap<>();
+        String qSql = "SELECT TypeDemploi,count(*) FROM `emplois` GROUP BY TypeDemploi";
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(qSql);
+            while (rs.next()) {
+                hm.put(rs.getString(1), rs.getInt(2));
+            }
+        } catch (SQLException ex) {
+        }
+        return hm;
+    }  
+    
+    
+    
+    
+       public HashMap<String, Integer> nbCompteemplacement() {
+        HashMap<String, Integer> hm = new HashMap<>();
+        String qSql = "SELECT emplacement,count(*) FROM `emplois` GROUP BY emplacement";
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(qSql);
+            while (rs.next()) {
+                
+                hm.put(rs.getString(1), rs.getInt(2));
+            }
+        } catch (SQLException ex) {
+        }
+        return hm;
+    } 
+    
+    
+    
+    
+    
+        public HashMap<String, Integer> nbComptetypecontrat() {
+        HashMap<String, Integer> hm = new HashMap<>();
+        String qSql = "SELECT TypeContrat,count(*) FROM `emplois` GROUP BY TypeContrat";
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(qSql);
+            while (rs.next()) {
+                hm.put(rs.getString(1), rs.getInt(2));
+            }
+        } catch (SQLException ex) {
+        }
+        return hm;
+    }
+    
+       
+        public HashMap<String, Integer> nbComptesalaire() {
+        HashMap<String, Integer> hm = new HashMap<>();
+        String qSql = "select case when salaire between 0 and 500 then '0-500' when salaire between 500 and 1000 then '501-1000' when salaire between 1000 and 2000 then '1001-2000' when salaire between 2000 and 50000 then '2001-50000' else 'OTHERS' end as `Range`, count(*) as `Count` from emplois group by `Range`";
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(qSql);
+            while (rs.next()) {
+                hm.put(rs.getString(1), rs.getInt(2));
+            }
+        } catch (SQLException ex) {
+        }
+        return hm;
+    }
+    
+    
+        
+    public List<Emplois> rechercheByAll(String idu) throws SQLException {
+    List<Emplois> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("SELECT * FROM `emplois` WHERE  (titre LIKE '%"+idu+"%' OR emplacement LIKE '%"+idu+"%' OR description LIKE '%"+idu+"%' OR salaire LIKE '%"+idu+"%' OR TypeDemploi LIKE '%"+idu+"%' OR TypeContrat LIKE '%"+idu+"%')");
+    while (rs.next()) {                
+               int id=rs.getInt(1);
+               String titre=rs.getString("titre");
+               String description=rs.getString("description");
+               String photo=rs.getString("Photo");
+               double salaire=rs.getDouble("salaire");
+               String emplacement=rs.getString("emplacement");
+               String TypeDemploi=rs.getString("TypeDemploi");
+               String TypeContrat=rs.getString("TypeContrat");
+               int IdCategorie=rs.getInt("idcategorie");
+               GestionnaireUtilisateur gu = new GestionnaireUtilisateur();
+               Utilisateur  user= gu.fetchOneUS(rs.getInt("id_utilisateur"));
+               Emplois p=new Emplois(id, titre, description, photo, salaire, emplacement, TypeDemploi, TypeContrat,IdCategorie,user);
+     arr.add(p);
+     }
+    return arr;    }
+    private static class string {
+
+        public string() {
         }
     }
 

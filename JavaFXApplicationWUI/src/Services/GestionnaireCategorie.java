@@ -104,4 +104,20 @@ public class GestionnaireCategorie {
         }
         return i;
     }
+    
+    public String getCategorieNomFromId(int id){
+        String requete = "SELECT nom FROM categoriecagnotte  WHERE id = ?";
+        String st ="";
+        try {
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            st = rs.getString(1);
+            System.out.println("Nom categorie à été trouvé par nom!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return st;
+    }
 }

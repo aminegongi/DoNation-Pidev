@@ -22,6 +22,11 @@ public class Administrateur extends Utilisateur{
         super(mail, mdp, salt, nom);
         this.username = username;
     }
+    
+    public Administrateur(Administrateur a) {
+        super(a.getMail(), a.getMdp(), a.getSalt(), a.getNom());
+        this.username = a.getUsername();
+    }
 
     public String getUsername() {
         return username;

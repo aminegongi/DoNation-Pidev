@@ -147,7 +147,7 @@
                                           <Font name="Calibri" size="18.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton layoutX="8.0" layoutY="284.0" prefHeight="37.0" prefWidth="235.0" style="-fx-background-color: #fefefe;" text="Prendre une photo">
+                                    <JFXButton fx:id="webcamTake" layoutX="8.0" layoutY="284.0" onAction="#openWebcam" prefHeight="37.0" prefWidth="235.0" style="-fx-background-color: #fefefe;" text="Prendre une photo">
                                        <font>
                                           <Font name="Calibri" size="18.0" />
                                        </font>
@@ -170,6 +170,13 @@
                                  </children>
                               </Pane>
                               <Pane layoutX="346.0" layoutY="157.0" prefHeight="347.0" prefWidth="817.0" style="-fx-background-color: #dcdcdc;" />
+                              <Pane fx:id="paneNoir" opacity="0.57" prefHeight="653.0" prefWidth="1247.0" style="-fx-background-color: #000000;" visible="false" />
+                              <Pane fx:id="webcamPane" layoutX="163.0" layoutY="76.0" prefHeight="490.0" prefWidth="910.0" style="-fx-background-color: ffffff;" visible="false">
+                                 <children>
+                                    <ImageView fx:id="imgPrevWeb" fitHeight="454.0" fitWidth="894.0" layoutX="10.0" layoutY="10.0" nodeOrientation="INHERIT" pickOnBounds="true" />
+                                    <JFXButton layoutX="682.0" layoutY="420.0" prefHeight="44.0" prefWidth="184.0" style="-fx-background-color: #dcdcdc;" text="Prendre la Photo" />
+                                 </children>
+                              </Pane>
                            </children>
                         </Pane>
                      </content>

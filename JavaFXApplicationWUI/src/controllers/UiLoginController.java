@@ -52,7 +52,8 @@ public class UiLoginController implements Initializable {
     private Label labelMail;
     @FXML
     private Hyperlink HyperNewCompte;
-
+    
+    public static String mailToVal; 
     /**
      * Initializes the controller class.
      */
@@ -85,6 +86,7 @@ public class UiLoginController implements Initializable {
             al1.showAndWait();
             Pane newLoadedPane;
             try {
+                mailToVal=txtMail.getText();
                 newLoadedPane = FXMLLoader.load(getClass().getResource("/views/UIActivationCompte.fxml"));
                 pane.getChildren().clear();
                 pane.getChildren().add(newLoadedPane);

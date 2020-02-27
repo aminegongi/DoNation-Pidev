@@ -27,6 +27,7 @@ public class DataSource {
     static DataSource instance;
 
     private DataSource() {
+        System.out.println(url + login + mdp);
         try {
             cnx = DriverManager.getConnection(url, login, mdp);
             System.out.println("Connection Bravo !");

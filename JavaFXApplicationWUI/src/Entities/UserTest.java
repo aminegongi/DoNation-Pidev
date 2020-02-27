@@ -12,5 +12,9 @@ import controllers.UiLoginController;
  * @author Hedi
  */
 public class UserTest {
-    public static int id = UiLoginController.uh.getId();
+    //public static int id = UiLoginController.uh.getId();
+    public static int id = 41;
+    //qui a participé
+    public static String emailSigned="amingongie98gongi@gmail.com";
+    public static String emailSendTo="hedi.khalifa5070@gmail.com";
 }

@@ -214,10 +214,13 @@ public class ServiceDonRestaurant implements IService<DonRestaurant> {
       
        public String getName (int id)  throws SQLException {
          ste=con.createStatement();
-        ResultSet rs=ste.executeQuery("select `nom` from `utilisateurs` WHERE `id` = '" + id + "';");
+        ResultSet rs=ste.executeQuery("select `nom`,`prenom` from `utilisateurs` WHERE `id` = '" + id + "';");
         rs.next();    
-               String Nom=rs.getString(1);
-               return Nom;
+                String retour;
+                String Nom=rs.getString(1);
+                String Prenom=rs.getString(2);
+                retour = Nom+" "+Prenom;
+               return retour;
      
     }
        
@@ -254,12 +257,20 @@ public class ServiceDonRestaurant implements IService<DonRestaurant> {
                return total;
      
     }
-      public int getIdUserFromMail(String mail) throws SQLException {
-           ste=con.createStatement();
-        ResultSet rs=ste.executeQuery("select `id` from `utilisateurs` WHERE `mail` = '" + mail + "';");
-        rs.next();    
+      public int getIdUserFromMail(String mail)  {
+           
+        try {
+            ste=con.createStatement();
+            ResultSet rs;
+            rs = ste.executeQuery("select `id` from `utilisateurs` WHERE `mail` = '" + mail + "';");
+            rs.next();    
                int idUser=rs.getInt(1);
                return idUser;
-     
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDonRestaurant.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
       }
+     
+      
 }

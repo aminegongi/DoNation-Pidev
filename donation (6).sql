@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  mar. 25 fév. 2020 à 00:49
+-- Généré le :  jeu. 27 fév. 2020 à 18:54
 -- Version du serveur :  5.7.28
 -- Version de PHP :  7.3.12
 
@@ -335,51 +335,28 @@ CREATE TABLE IF NOT EXISTS `cagnotte` (
   `etat` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_categorie` (`id_categorie`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `cagnotte`
 --
 
 INSERT INTO `cagnotte` (`id`, `nom`, `id_categorie`, `date_de_creation`, `date_de_debut`, `date_de_fin`, `montant_demande`, `montant_actuel`, `id_proprietaire`, `id_organisation`, `etat`) VALUES
-(1, 'SOS Sousse', 0, '2020-02-13', '3920-03-12', '3920-04-12', 5000, 57200, 2, 12, 0),
-(3, 'SOS Marsa', 0, '2020-02-13', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(4, 'SOS Marsas', 2, '2020-02-13', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(5, 'SOS Marsas', 2, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(6, 'SOS Marsas', 2, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(7, 'SOS Marsas', 2, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(8, 'SOS Marsas', 2, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(9, 'SOS Marsas', 2, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(25, 'Arij', 1, '2020-02-20', '1907-11-10', '1907-12-11', 5000, 79786, 1, 12, 0),
-(11, 'SOS Marsas', 2, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(12, 'SOS Marsas', 2, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(13, 'SOS Kram', 80, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(14, 'SOS Kram', 80, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(15, 'SOS Kram', 80, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(16, 'SOS Kram', 80, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(17, 'SOS Kram', 80, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(18, 'SOS Kram', 80, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(19, 'SOS Kram', 80, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(20, 'SOS Kram', 80, '2020-02-14', '3920-03-12', '3920-04-12', 5000, 0, 2, 0, 0),
-(21, 'TEST', 1, '2020-02-14', '3920-03-12', '3920-04-12', 2000, 0, 2, 0, 1),
-(22, 'Resto', 1, '2020-02-14', '3920-03-12', '3920-04-12', 2000, 10100, 2, 12, 0),
-(23, 'Razi', 1, '2020-02-16', '3920-03-12', '3920-04-12', 10000, 23800, 3, 0, 0),
-(24, 'IAD', 1, '2020-02-16', '2020-04-12', '3920-04-12', 10000, 50000, 3, 0, 0),
-(26, 'Ahmed', 1, '2020-02-20', '1912-08-28', '1912-10-28', 2500, 100, 1, 0, 0),
-(27, 'Tetet', 1, '2020-02-20', '2020-03-02', '2020-05-04', 1203, 200, 1, 0, 0),
-(28, 'Blah', 1, '2020-02-21', '2020-03-02', '2020-09-02', 9000, 1541, 1, 0, 0),
-(29, 'Blah', 1, '2020-02-21', '2020-03-02', '2020-09-02', 9000, 1541, 1, 0, 0),
-(30, 'Bluh', 0, '2020-02-21', '0021-09-02', '0021-09-20', 20, 10, 1, 0, 0),
-(31, 'No', 0, '2020-02-21', '2020-06-20', '2021-03-10', 1000, 100, 1, 0, 0),
-(32, 'Non', 0, '2020-02-21', '0021-09-20', '0021-09-20', 200, 20, 1, 0, 0),
-(33, 'wat', 0, '2020-02-21', '0021-09-20', '0021-09-20', 200, 2, 1, 0, 0),
-(34, 'Oo', 0, '2020-02-21', '0021-09-20', '0021-09-20', 2200, 2, 1, 0, 0),
-(35, 'Niet', 2, '2020-02-21', '0036-11-02', '0021-09-20', 222, 2, 1, 0, 0),
-(36, 'R', 1, '2020-02-21', '0021-09-20', '0021-09-20', 20, 0, 1, 0, 0),
-(37, 'Validation', 2, '2020-02-21', '2020-03-02', '2021-03-20', 5000, 2588, 1, 12, 1),
-(38, 'Chater', 2, '2020-02-21', '2020-03-02', '2020-05-02', 6000, 0, 1, 0, 0),
-(39, 'Self care', 1, '2020-02-25', '2020-02-01', '2021-01-12', 7500, 8000, 1, 0, 1),
-(40, 'amineE', 2, '2020-02-25', '2019-03-12', '2020-03-12', 121, 243, 1, 0, 0);
+(47, 'Chaise roulante', 2, '2020-02-27', '2020-02-25', '2020-03-25', 1500, 500, 1, 0, 0),
+(48, 'Construction d\'une maison', 17, '2020-02-27', '2020-02-27', '2021-03-31', 30000, 4000, 1, 2, 1),
+(49, 'Vetements pour 100 enfants', 1, '2020-02-27', '2020-02-27', '2020-05-27', 5000, 0, 1, 2, 1),
+(50, 'Medicaments', 2, '2020-02-27', '2020-02-27', '2020-03-05', 500, 0, 1, 0, 0),
+(51, 'Lancement d\'un mini-projet pour un SDF', 17, '2020-02-27', '2020-02-27', '2020-06-01', 8000, 1500, 1, 0, 0),
+(52, 'Amelioration d\'un jardin publique', 18, '2020-02-27', '2020-02-27', '2020-04-01', 3000, 0, 1, 0, 0),
+(53, 'PC Portables pour 10 etudiants', 18, '2020-02-27', '2020-02-27', '2020-04-01', 15000, 3500, 1, 2, 1),
+(54, 'Operation medicale', 2, '2020-02-27', '2020-02-27', '2020-11-25', 300000, 20000, 1, 2, 1),
+(55, 'Vetements pour 50 SDF', 17, '2020-02-27', '2020-01-06', '2020-02-25', 1500, 2000, 1, 2, 0),
+(56, 'Construction d\'un hopital pour enfants', 18, '2020-02-27', '2020-02-24', '2022-01-01', 3000000, 50000, 1, 0, 0),
+(57, 'Renouvellement d\'une ecole', 18, '2020-02-27', '2020-02-22', '2021-01-01', 500000, 10000, 1, 0, 0),
+(58, 'Construction d\'un hopital d\'animaux', 18, '2020-02-27', '2020-02-21', '2021-01-01', 1000000, 0, 1, 0, 0),
+(59, 'Journee Mondiale des Donneurs de Sang', 18, '2020-02-27', '2020-02-13', '2020-06-14', 10000, 1000, 1, 0, 0),
+(60, 'Salle de jeux dans le village SOS Manouba', 1, '2020-02-27', '2020-02-13', '2020-06-20', 10000, 2000, 1, 0, 0),
+(64, 'amineTest', 1, '2020-02-27', '2020-02-03', '2020-02-21', 989, 1231, 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -393,24 +370,24 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `nom` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`id`, `nom`) VALUES
+(92, 'AmineTest'),
+(93, 'aqwzsxdc'),
 (38, 'bricolage'),
 (87, 'categorietest'),
 (33, 'education'),
-(83, 'efe'),
 (80, 'f'),
 (81, 'faa'),
-(84, 'feafa'),
+(84, 'feafaaa'),
 (85, 'hedicatEEE'),
-(82, 'hh'),
 (34, 'informatique'),
-(91, 'opopmmm'),
+(91, 'opopmmmpopo'),
 (79, 'x'),
 (75, 'yx'),
 (78, 'z'),
@@ -428,15 +405,17 @@ CREATE TABLE IF NOT EXISTS `categoriecagnotte` (
   `nom` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `categoriecagnotte`
 --
 
 INSERT INTO `categoriecagnotte` (`id`, `nom`, `description`) VALUES
-(1, 'SOS', NULL),
-(2, 'Maladie', 'Les maladies');
+(1, 'SOS', 'SOS'),
+(2, 'Maladie', 'Les maladies'),
+(17, 'Pauvrete', NULL),
+(18, 'Communaute', NULL);
 
 -- --------------------------------------------------------
 
@@ -476,7 +455,7 @@ CREATE TABLE IF NOT EXISTS `categorie_emplois` (
   `titre_categorie` varchar(255) NOT NULL,
   `description_categorie` varchar(255) NOT NULL,
   PRIMARY KEY (`id_categorie_emplois`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `categorie_emplois`
@@ -522,25 +501,25 @@ CREATE TABLE IF NOT EXISTS `demande` (
   `nb_reactions` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_categorie` (`id_categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `demande`
 --
 
 INSERT INTO `demande` (`id`, `id_categorie`, `id_user`, `titre`, `description`, `etat`, `nb_reactions`) VALUES
-(18, 38, 2, 'demande bricolage', 'aider moi a ...', 'VISIBLE', 7),
-(19, 33, 2, 'besoin d\'aide en physique', 'mes notes  en physique sont catasrophiques...', 'VISIBLE', 9),
+(18, 38, 2, 'demande bricolage', 'aider moi a ...', 'VISIBLE', 12),
+(19, 33, 2, 'besoin d\'aide en physique', 'mes notes  en physique sont catasrophiques...', 'VISIBLE', 12),
 (21, 38, 100, 'demande bricolage', 'aider moi a ...', 'SIGNALEE', 0),
 (22, 38, 2, 'demande bricolage', 'aider moi a ...', 'VALIDE', 5),
 (23, 38, 2, 'demande bricolage', 'aider moi a ...', 'VISIBLE', 3),
-(24, 34, 2, 'demande last', 'description last', 'VISIBLE', 5),
+(24, 34, 2, 'demande last', 'description last', 'VISIBLE', 7),
 (25, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 2),
 (26, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 1),
-(27, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 1),
+(27, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 2),
 (28, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 0),
 (29, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 0),
-(30, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 0),
+(30, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 1),
 (31, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 1),
 (32, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 0),
 (33, 33, 2, 'besoin d\'aide en physique', 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu\'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum', 'VISIBLE', 0),
@@ -564,7 +543,15 @@ INSERT INTO `demande` (`id`, `id_categorie`, `id_user`, `titre`, `description`, 
 (51, 38, 2, 'test', 'tt', 'VISIBLE', 0),
 (52, 38, 2, 'saisir titremmmmmm', 'mmmmmmmmsaisir description', 'VISIBLE', 2),
 (53, 38, 39, 'azaeaz', 'azaez', 'VISIBLE', 0),
-(54, 83, 41, 'saisir titregegrege', 'saisir descriptiongeggegegeg', 'VISIBLE', 0);
+(54, NULL, 41, 'saisir titregegrege', 'saisir descriptiongeggegegeg', 'VISIBLE', 0),
+(55, 38, 2, 'AmineTest', 'asasasas', 'VISIBLE', 0),
+(56, 38, 2, 'azaza', 'azazazeqsddqffsf', 'VISIBLE', 1),
+(58, 38, 2, 'titre demande', '', 'VISIBLE', 0),
+(59, NULL, 2, 'aa', 'gghg', 'SIGNALEE', 0),
+(60, 38, 2, 'zgzgzrg', 'grzgz', 'VISIBLE', 0),
+(61, 38, 2, 'molo', 'molom', 'SIGNALEE', 0),
+(62, 92, 41, 'aqwzsx', 'aqwzsx', 'VISIBLE', 0),
+(63, 92, 41, 'aqwzsxzz', 'aqwzsxzzzz', 'VISIBLE', 0);
 
 -- --------------------------------------------------------
 
@@ -599,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `donations` (
   `methode` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_categorie_cagnotte` (`id_cagnotte`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `donations`
@@ -621,7 +608,8 @@ INSERT INTO `donations` (`id`, `id_cagnotte`, `id_utilisateur`, `nom`, `montant`
 (13, 39, 1, 'Ahmed', 500, '2020-02-25', 'PayPal'),
 (14, 39, 1, 'Anonyme', 7000, '2020-02-25', 'PayPal'),
 (15, 40, 1, 'spark', 121, '2020-02-25', 'PayPal'),
-(16, 40, 1, 'spark', 121, '2020-02-25', 'PayPal');
+(16, 40, 1, 'spark', 121, '2020-02-25', 'PayPal'),
+(17, 64, 1, 'amine', 1231, '2020-02-27', 'PayPal');
 
 -- --------------------------------------------------------
 
@@ -639,7 +627,7 @@ CREATE TABLE IF NOT EXISTS `donrestaurant` (
   PRIMARY KEY (`idDon`),
   KEY `fk_DonRestaurant_utilisateurs_Resto` (`idResto`),
   KEY `fk_DonRestaurant_utilisateurs_User` (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `donrestaurant`
@@ -667,7 +655,8 @@ INSERT INTO `donrestaurant` (`idDon`, `idResto`, `idUser`, `montant`, `date`) VA
 (19, 41, 38, '2.000', '2020-02-24 21:56:40'),
 (20, 41, 38, '2.000', '2020-02-24 22:01:10'),
 (21, 41, 38, '3.000', '2020-02-24 22:05:57'),
-(22, 41, 38, '99.000', '2020-02-25 01:06:20');
+(22, 41, 38, '99.000', '2020-02-25 01:06:20'),
+(23, 41, 38, '121.000', '2020-02-27 15:33:49');
 
 -- --------------------------------------------------------
 
@@ -682,24 +671,47 @@ CREATE TABLE IF NOT EXISTS `emplois` (
   `description` varchar(255) NOT NULL,
   `Photo` varchar(255) NOT NULL,
   `salaire` double NOT NULL,
-  `emplacement` enum('Tunis','Mahdia','Sousse','Monastir','Ariana') NOT NULL,
+  `emplacement` enum('Tunis','Mahdia','Sousse','Ariana','Sfax','Beja','BenArous','Bizerte','Gabes','Gafsa','Jendouba','Kairouan','Kasserine','Kebili','Kef','Manouba','Medenine','Monastir','Nabeul','SidiBouzid','Siliana','Tataouine','Tozeur','Zaghouan') NOT NULL,
   `TypeDemploi` enum('Offre','Demande') NOT NULL,
-  `TypeContrat` enum('ContratDureeIndeterminee','Contratduréedeterminee','ContratTravailTemporaire','ContratApprentissage','ContratProfessionnalisation','ContratUniqueInsertion') NOT NULL,
+  `TypeContrat` enum('ContratDureeIndeterminee','Contratdureedeterminee','ContratTravailTemporaire','ContratApprentissage','ContratProfessionnalisation','ContratUniqueInsertion') NOT NULL,
   `idcategorie` int(11) DEFAULT NULL,
   `id_utilisateur` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_emplois_categorieemplois` (`idcategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `emplois`
 --
 
 INSERT INTO `emplois` (`id`, `titre`, `description`, `Photo`, `salaire`, `emplacement`, `TypeDemploi`, `TypeContrat`, `idcategorie`, `id_utilisateur`) VALUES
-(3, 'ezezr', 'zerzrzr', 'picture.png', 121, 'Ariana', 'Demande', 'ContratUniqueInsertion', 35, 0),
+(3, 'ezezr', 'zerzrzr', 'picture.png', 121, 'Tunis', 'Demande', 'ContratUniqueInsertion', 35, 0),
 (4, 'ezezrtrtrtr', 'zerzrzrrtrtrt', 'picture.png', 1219, 'Tunis', 'Demande', 'ContratDureeIndeterminee', 22, 0),
-(5, 'testIII77', 'testIII', 'shane-rounce-DNkoNXQti3c-unsplash.jpg', 12111, 'Ariana', 'Offre', 'ContratUniqueInsertion', 22, 38),
-(6, 'aqazas', 'ezrzrr', 'Couleur.PNG', 12311, 'Ariana', 'Demande', 'ContratUniqueInsertion', 35, 38);
+(5, 'testIII77', 'testIII', 'shane-rounce-DNkoNXQti3c-unsplash.jpg', 12111, 'Monastir', 'Offre', 'ContratUniqueInsertion', 22, 38),
+(6, 'aqazas', 'ezrzrr', 'Couleur.PNG', 12311, 'Kairouan', 'Demande', 'ContratUniqueInsertion', 35, 38),
+(12, 'ds', 'sd', 'ds', 777, 'Ariana', 'Offre', 'ContratDureeIndeterminee', 22, 7),
+(13, 'ds', 'sd', 'ds', 777, 'Sfax', 'Offre', 'ContratDureeIndeterminee', 22, 7),
+(14, 'fdxg', 'gd', 'gd', 7777, 'Beja', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(15, 'fdxg', 'gd', 'gd', 7777, 'BenArous', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(16, 'fdxg', 'gd', 'gd', 7777, 'Bizerte', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(17, 'fdxg', 'gd', 'gd', 7777, 'Gabes', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(18, 'fdxg', 'gd', 'gd', 7777, 'Gafsa', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(19, 'fdxg', 'gd', 'gd', 7777, 'Jendouba', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(20, 'fdxg', 'gd', 'gd', 7777, 'Tunis', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(21, 'fdxg', 'gd', 'gd', 7777, 'Kasserine', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(22, 'fdxg', 'gd', 'gd', 7777, 'Kebili', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(23, 'fdxg', 'gd', 'gd', 7777, 'Kef', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(26, 'hfg', 'dfg', 'Offre-emploi.jpg', 77, 'Beja', 'Offre', 'ContratDureeIndeterminee', 11, 42),
+(27, 'hfg', 'dfg', 'Offre-emploi.jpg', 77, 'Zaghouan', 'Offre', 'ContratDureeIndeterminee', 11, 42),
+(28, 'hfg', 'dfg', 'Offre-emploi.jpg', 77, 'Tozeur', 'Offre', 'ContratDureeIndeterminee', 11, 42),
+(29, 'ee', 'ee', 'Offre-emploi.jpg', 122, 'Tozeur', 'Offre', 'ContratTravailTemporaire', 22, 42),
+(30, 'aa', '11', 'Offre-emploi.jpg', 454, 'Siliana', 'Demande', 'ContratProfessionnalisation', 11, 42),
+(31, 'ss', 'ss', 'ss', 77, 'Nabeul', 'Offre', 'ContratDureeIndeterminee', 35, 2),
+(34, 'edsds', 'ezsd', 'download.jpg', 788, 'Tataouine', 'Demande', 'Contratdureedeterminee', 22, 42),
+(36, 'fd', 'df', 'fd', 44, 'Tunis', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(37, 'fd', 'df', 'fd', 44, 'Tunis', 'Offre', 'ContratDureeIndeterminee', 23, 2),
+(38, 'sdsd', 'dssd', 'download.jpg', 11, 'Beja', 'Demande', 'Contratdureedeterminee', 22, 42),
+(39, 'dxcfh', 'cfncfh', 'ghost5.png', 121, 'Beja', 'Demande', 'ContratTravailTemporaire', 23, 41);
 
 -- --------------------------------------------------------
 
@@ -715,7 +727,7 @@ CREATE TABLE IF NOT EXISTS `historiqueconnexionuser` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idUtilisateur` (`idUtilisateur`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `historiqueconnexionuser`
@@ -799,7 +811,93 @@ INSERT INTO `historiqueconnexionuser` (`id`, `idUtilisateur`, `ipAdresse`, `date
 (79, 41, '41.226.11.245', '2020-02-25 00:40:59'),
 (80, 41, '41.226.11.245', '2020-02-25 00:41:31'),
 (81, 41, '41.226.11.245', '2020-02-25 00:43:34'),
-(82, 41, '41.226.11.245', '2020-02-25 00:47:47');
+(82, 41, '41.226.11.245', '2020-02-25 00:47:47'),
+(83, 39, 'IP Prob', '2020-02-25 11:54:41'),
+(84, 39, 'IP Prob', '2020-02-25 11:55:19'),
+(85, 39, 'IP Prob', '2020-02-25 19:18:16'),
+(86, 39, '197.2.11.152', '2020-02-25 19:43:20'),
+(87, 39, '197.2.11.152', '2020-02-25 19:43:57'),
+(88, 39, '197.2.11.152', '2020-02-25 19:57:32'),
+(89, 41, '197.2.11.152', '2020-02-25 21:08:39'),
+(90, 41, '197.2.11.152', '2020-02-25 21:46:53'),
+(91, 41, 'IP Prob', '2020-02-26 20:36:38'),
+(92, 41, 'IP Prob', '2020-02-26 20:37:57'),
+(93, 41, 'IP Prob', '2020-02-26 20:43:17'),
+(94, 41, 'IP Prob', '2020-02-26 20:45:48'),
+(95, 41, 'IP Prob', '2020-02-26 20:48:41'),
+(96, 41, 'IP Prob', '2020-02-26 20:49:14'),
+(97, 41, 'IP Prob', '2020-02-26 20:51:55'),
+(98, 41, '41.226.11.245', '2020-02-26 21:05:30'),
+(99, 41, '41.226.11.245', '2020-02-26 21:06:32'),
+(100, 41, '41.226.11.245', '2020-02-26 21:10:54'),
+(101, 41, '41.226.11.245', '2020-02-26 21:14:45'),
+(102, 41, '41.226.11.245', '2020-02-26 21:15:57'),
+(103, 39, '41.226.11.245', '2020-02-26 21:16:47'),
+(104, 39, '41.226.11.245', '2020-02-26 21:18:23'),
+(105, 39, '41.226.11.245', '2020-02-26 21:19:56'),
+(106, 39, '41.226.11.245', '2020-02-26 21:21:27'),
+(107, 39, '41.226.11.245', '2020-02-26 21:21:59'),
+(108, 39, '41.226.11.245', '2020-02-26 21:23:26'),
+(109, 39, '41.226.11.245', '2020-02-26 21:24:17'),
+(110, 39, '41.226.11.245', '2020-02-26 21:25:07'),
+(111, 39, '41.226.11.245', '2020-02-26 21:26:03'),
+(112, 41, 'IP Prob', '2020-02-27 00:45:26'),
+(113, 41, 'IP Prob', '2020-02-27 00:48:51'),
+(114, 39, 'IP Prob', '2020-02-27 00:50:42'),
+(115, 39, 'IP Prob', '2020-02-27 08:00:32'),
+(116, 39, 'IP Prob', '2020-02-27 08:04:44'),
+(117, 39, 'IP Prob', '2020-02-27 08:07:51'),
+(118, 39, 'IP Prob', '2020-02-27 08:11:41'),
+(119, 39, '41.226.11.245', '2020-02-27 10:56:28'),
+(120, 39, '41.226.11.245', '2020-02-27 11:06:05'),
+(121, 39, '41.226.11.245', '2020-02-27 11:10:19'),
+(122, 39, '41.226.11.245', '2020-02-27 11:12:09'),
+(123, 39, '41.226.11.245', '2020-02-27 11:16:32'),
+(124, 39, '41.226.11.245', '2020-02-27 11:17:00'),
+(125, 39, '41.226.11.245', '2020-02-27 11:21:02'),
+(126, 39, '41.226.11.245', '2020-02-27 11:23:18'),
+(127, 39, '41.226.11.245', '2020-02-27 11:24:10'),
+(128, 39, '41.226.11.245', '2020-02-27 11:25:15'),
+(129, 39, '41.226.11.245', '2020-02-27 11:30:21'),
+(130, 39, '41.226.11.245', '2020-02-27 11:35:00'),
+(131, 39, '41.226.11.245', '2020-02-27 11:35:34'),
+(132, 39, '41.226.11.245', '2020-02-27 11:36:43'),
+(133, 39, '41.226.11.245', '2020-02-27 11:51:31'),
+(134, 39, '<html>', '2020-02-27 13:14:05'),
+(135, 39, '<html>', '2020-02-27 13:18:06'),
+(136, 39, '<html>', '2020-02-27 13:19:04'),
+(137, 38, '<html>', '2020-02-27 13:41:46'),
+(138, 38, '<html>', '2020-02-27 13:43:19'),
+(139, 38, '<html>', '2020-02-27 13:44:18'),
+(140, 38, '<html>', '2020-02-27 13:45:37'),
+(141, 38, '<html>', '2020-02-27 13:51:05'),
+(142, 38, '<html>', '2020-02-27 13:54:52'),
+(143, 38, '<html>', '2020-02-27 14:04:47'),
+(144, 38, '41.226.11.245', '2020-02-27 14:31:06'),
+(145, 41, '41.226.11.245', '2020-02-27 14:32:53'),
+(146, 41, '<html>', '2020-02-27 14:46:21'),
+(147, 41, '<html>', '2020-02-27 14:56:24'),
+(148, 41, '<html>', '2020-02-27 15:00:08'),
+(149, 41, '<html>', '2020-02-27 15:04:44'),
+(150, 41, '<html>', '2020-02-27 15:06:35'),
+(151, 41, '<html>', '2020-02-27 15:07:34'),
+(152, 41, '<html>', '2020-02-27 15:09:13'),
+(153, 41, '<html>', '2020-02-27 15:10:01'),
+(154, 41, '<html>', '2020-02-27 15:11:05'),
+(155, 41, '<html>', '2020-02-27 15:14:20'),
+(156, 41, '<html>', '2020-02-27 15:16:47'),
+(157, 41, '<html>', '2020-02-27 15:19:02'),
+(158, 41, '<html>', '2020-02-27 15:20:04'),
+(159, 39, '<html>', '2020-02-27 15:29:46'),
+(160, 41, '<html>', '2020-02-27 15:31:02'),
+(161, 39, '<html>', '2020-02-27 15:32:05'),
+(162, 41, '197.4.7.144', '2020-02-27 15:44:37'),
+(163, 39, '197.4.7.144', '2020-02-27 15:47:53'),
+(164, 41, '197.4.7.144', '2020-02-27 15:53:20'),
+(165, 41, '197.4.7.144', '2020-02-27 17:06:58'),
+(166, 41, '197.4.7.144', '2020-02-27 17:10:08'),
+(167, 41, '197.4.7.144', '2020-02-27 17:22:11'),
+(168, 41, '197.4.7.144', '2020-02-27 17:34:05');
 
 -- --------------------------------------------------------
 
@@ -814,58 +912,40 @@ CREATE TABLE IF NOT EXISTS `inscrinewsletter` (
   `mailNews` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_idU_user_news` (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `inscrinewsletter`
 --
 
 INSERT INTO `inscrinewsletter` (`id`, `idUser`, `mailNews`) VALUES
-(1, NULL, 'amine98gongi@gmail.com'),
-(2, NULL, 'amine@gmail.com'),
-(3, 25, 'neila.neila.neila@gmail.com'),
-(4, NULL, 'DonationOrgTest1@gmail.com'),
-(5, NULL, 'DonationOrgModifTest1@gmail.com'),
-(6, 19, 'amine.gqqongi@esprit.tn'),
-(7, 21, 'goamine3@gmail.com'),
-(8, 28, 'amine.gongi@esprit.tn'),
-(9, 2, 'mail.com@om2'),
-(10, 2, 'mail.com@om2'),
-(11, 2, 'mail.com@om2'),
-(12, 2, 'mail.com@om2'),
-(13, 2, 'mail.com@om2'),
-(14, 2, 'mail.com@om2'),
-(15, 2, 'mail.com@om2'),
-(16, 2, 'mail.com@om2'),
-(17, 2, 'mail.com@om2'),
-(18, 2, 'mail.com@om2'),
-(19, 3, 'mail.com@om3'),
-(20, 28, 'amine.gonfgfghgi@esprit.tn'),
-(21, 29, 'amine.gongi@esprit.tn'),
-(22, 30, 'amine.gongi@esprit.tnn'),
-(23, 29, 'amine.gongi@espggrit.tn'),
-(24, 31, 'amine.gongi@esprit.tn'),
-(25, 31, 'amine.gongi@esprit.tn'),
-(26, 31, 'amine.godddngi@esprit.tn'),
-(27, 32, 'amine.gongi@gmail.com'),
-(28, 33, 'amine.gongi@esprit.tn'),
-(29, 33, 'amine.gongi@esprit.tn'),
-(30, 34, 'amine98gongi@gmail.com'),
-(31, 35, 'aminegongiesprit@gmail.com'),
-(32, 36, 'sedkikik@donation.tn'),
-(33, 37, 'aazeae@gmail.com'),
-(34, 38, 'ahmed.fourati@esprit.tn'),
-(35, 39, 'amingongie98gongi@gmail.com'),
-(36, 39, 'amingongie98gongi@gmail.com'),
-(37, 39, 'amingongie98gongi@gmail.com'),
-(38, 40, 'pidevJava@esprit.tn'),
-(39, 40, 'pidevJava@esprit.tn'),
-(40, 38, 'ahmed.fourati@esprit.tn'),
-(41, 40, 'pidevJava@esprit.tn'),
-(42, 40, 'pidevJava@esprit.tn'),
-(43, 41, 'yessine.khanfir@esprit.tn'),
-(44, 41, 'yessine.khanfir@esprit.tn'),
-(45, 41, 'yessine.khanfir@esprit.tn');
+(1, 28, 'amine.gongi@esprit.tn'),
+(2, 28, 'amine.gongi@esprit.tn'),
+(3, 28, 'amine.gongi@esprit.tn'),
+(4, 28, 'amine.gongi@esprit.tn'),
+(5, 28, 'amine.gongi@esprit.tn'),
+(6, 42, 'amine@gmail.com'),
+(7, 42, 'amine@gmail.com'),
+(8, 42, 'amine@gmail.com'),
+(9, 43, 'rctccece@gmail.com'),
+(10, 44, 'addadad@gmail.com'),
+(11, 45, 'ammam@gmail.com'),
+(12, 46, 'zfzfzfz@'),
+(13, 47, 'azazaazaz@gmail.com'),
+(14, 41, 'yessine.khanfir@esprit.tn'),
+(15, 41, 'yessine.khanfir@esprit.tn'),
+(16, 41, 'yessine.khanfir@esprit.tn'),
+(17, 41, 'yessine.khanfir@esprit.tn'),
+(18, 41, 'yessine.khanfir@esprit.tn'),
+(19, 41, 'yessine.khanfir@esprit.tn'),
+(20, 41, 'yessine.khanfir@esprit.tn'),
+(21, 41, 'yessine.khanfir@esprit.tn'),
+(22, 41, 'yessine.khanfir@esprit.tn'),
+(23, 39, 'amingongie98gongi@gmail.com'),
+(24, 39, 'amingongie98gongi@gmail.com'),
+(25, 39, 'amingongie98gongi@gmail.com'),
+(26, 48, 'amine.maalouuuf@esprit.tn'),
+(27, 48, 'amine.maalouuuf@esprit.tn');
 
 -- --------------------------------------------------------
 
@@ -903,8 +983,8 @@ INSERT INTO `newsletter` (`id`, `libelle`, `objetMail`, `corpsMail`, `dateEnvoi`
 (13, 'aaza', 'azaza', '<html dir=\"ltr\"><head></head><body contenteditable=\"true\"><p><font face=\"Segoe UI\">azazazaza</font></p><p><font face=\"Segoe UI\"><b>azaza</b></font></p></body></html>', NULL, '2020-02-21 00:49:04'),
 (14, 'azaza', 'azaza', '<html dir=\"ltr\"><head></head><body contenteditable=\"true\"><p><font face=\"Segoe UI\">aazazazaz</font></p></body></html>', NULL, '2020-02-21 01:12:11'),
 (15, 'azazasfsdfs', 'azazasfsdfsd', '<html dir=\"ltr\"><head></head><body contenteditable=\"true\"><p><font face=\"Segoe UI\">aazazazazfdsfsfsf</font></p></body></html>', NULL, '2020-02-21 01:12:16'),
-(16, 'xwqsqd', 'qdqdqd', '<html dir=\"ltr\"><head></head><body contenteditable=\"true\"><p><font face=\"Segoe UI\">arez</font></p></body></html>', NULL, '2020-02-21 01:14:39'),
-(18, 'PIDonation', 'DoNation', '<html dir=\"ltr\"><head></head><body contenteditable=\"true\"><p><font face=\"Segoe UI\" size=\"5\"><b>Hello</b></font></p><p style=\"text-align: center;\"><font face=\"Segoe UI\"><b><i>Bonjour</i></b></font></p></body></html>', NULL, '2020-02-21 08:48:51');
+(16, 'xwqsqd', 'qdqdqd', '<html dir=\"ltr\"><head></head><body contenteditable=\"true\"><p><font face=\"Segoe UI\">arez</font></p></body></html>', '2020-02-26', '2020-02-21 01:14:39'),
+(18, 'PIDonation', 'DoNation', '<html dir=\"ltr\"><head></head><body contenteditable=\"true\"><p><font face=\"Segoe UI\" size=\"5\"><b>Hello</b></font></p><p style=\"text-align: center;\"><font face=\"Segoe UI\"><b><i>Bonjour</i></b></font></p></body></html>', '2020-02-26', '2020-02-21 08:48:51');
 
 -- --------------------------------------------------------
 
@@ -948,7 +1028,7 @@ CREATE TABLE IF NOT EXISTS `publicationdon` (
   `etat` int(100) NOT NULL COMMENT '1 =actif / 0= non actiof',
   `ajoutePar` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `publicationdon`
@@ -964,7 +1044,12 @@ INSERT INTO `publicationdon` (`id`, `type`, `titre`, `description`, `datePublica
 (20, 'OffreDon', 'tt', 'tt', '2020-02-21 09:19:21.00000', 0, NULL, 0, 13),
 (21, 'AppelAuDon', 'dd', 'dd', '2020-02-21 09:22:20.00000', 0, 3, 0, 11),
 (22, 'AppelAuDon', 'Hello', 'Hello', '2020-02-24 21:31:59.00000', 0, 3, 1, 11),
-(23, 'AppelAuDon', 'Hello 2', 'Hello 2', '2020-02-24 21:31:59.00000', 0, 3, 1, 11);
+(23, 'AppelAuDon', 'Hello 2', 'Hello 2', '2020-02-24 21:31:59.00000', 0, 3, 1, 11),
+(24, 'OffreDon', 'azazazaz', 'aazazazza\naz\naz\naz\nz\naz\naz', '2020-02-27 01:45:31.00000', 0, NULL, 1, 41),
+(26, 'OffreDon', 's', 'sszszs', '2020-02-27 01:48:53.00000', 0, NULL, 1, 41),
+(27, 'AppelAuDon', 'aza', 'azazazazaza', '2020-02-27 01:50:44.00000', 0, 5, 1, 39),
+(28, 'OffreDon', 'Amine :\'(', 'azarzerzrezzrgregdergeggre\nzrzrzrrzrzrrrzaazscfefzzrgsgg\nzrzzrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', '2020-02-27 16:44:40.00000', 0, NULL, 1, 41),
+(29, 'AppelAuDon', 'amine Resto', 'azaazazzazzazazaazaz\nazazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\nazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz', '2020-02-27 16:47:55.00000', 0, 44, 1, 39);
 
 -- --------------------------------------------------------
 
@@ -981,16 +1066,16 @@ CREATE TABLE IF NOT EXISTS `publicite` (
   `dateAjout` datetime(6) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `publicite`
 --
 
 INSERT INTO `publicite` (`id`, `titre`, `marque`, `description`, `dateAjout`, `image`) VALUES
-(4, 'ss', 'gg', 'gg', '2020-02-24 22:57:48.000000', 'logoEsprit.png'),
-(5, 's', '', '', '2020-02-24 23:06:49.000000', 'stickerBleu.png'),
-(6, 'se', '', '', '2020-02-24 23:07:06.000000', 'stickerBlanc.png');
+(4, 'ss', 'gg', 'www.coca-cola.com', '2020-02-24 22:57:48.000000', 'coca3.png'),
+(5, 's', '', 'www.asus.com', '2020-02-24 23:06:49.000000', 'asus3.png'),
+(6, 'se', '', 'www.audi.com', '2020-02-24 23:07:06.000000', 'audi3.png');
 
 -- --------------------------------------------------------
 
@@ -1480,7 +1565,7 @@ INSERT INTO `publicite_country` (`idPublicite`, `idCountry`, `nbrClick`) VALUES
 (5, 220, 0),
 (5, 221, 0),
 (5, 222, 0),
-(5, 223, 4),
+(5, 223, 5),
 (5, 224, 0),
 (5, 225, 0),
 (5, 226, 0),
@@ -1776,7 +1861,7 @@ INSERT INTO `publicite_region` (`idPublicite`, `idRegion`, `nbClick`) VALUES
 (4, 2, 0),
 (4, 3, 0),
 (4, 4, 4),
-(5, 1, 0),
+(5, 1, 1),
 (5, 2, 0),
 (5, 3, 0),
 (5, 4, 4),
@@ -1849,7 +1934,14 @@ INSERT INTO `repasservi` (`idResto`, `date`) VALUES
 (41, '2020-02-24 22:06:32'),
 (41, '2020-02-25 01:05:47'),
 (41, '2020-02-25 01:06:05'),
-(41, '2020-02-25 01:06:22');
+(41, '2020-02-25 01:06:22'),
+(41, '2020-02-25 22:47:47'),
+(41, '2020-02-27 15:33:30'),
+(41, '2020-02-27 15:33:52'),
+(41, '2020-02-27 15:33:53'),
+(41, '2020-02-27 15:33:55'),
+(41, '2020-02-27 15:33:58'),
+(41, '2020-02-27 15:34:06');
 
 -- --------------------------------------------------------
 
@@ -1875,6 +1967,7 @@ INSERT INTO `signalement` (`id_demande`, `id_user`, `raison`, `description`) VAL
 (18, 2, 'VIOLENCE', 'un discours de violence'),
 (18, 100, 'AUTRE', 'zrgegeg'),
 (19, 2, 'VIOLENCE', 'un discours de violence'),
+(19, 6, 'ARNAQUE', ''),
 (19, 100, 'HAINE', 'frfrrf'),
 (21, 1, 'VIOLENCE', 'un discours de violence'),
 (21, 2, 'HAINE', 'un discours de haine'),
@@ -1893,12 +1986,20 @@ INSERT INTO `signalement` (`id_demande`, `id_user`, `raison`, `description`) VAL
 (29, 2, 'VIOLENCE', 'hfieaihfaehueh'),
 (29, 100, 'AUTRE', 'trtrtrtrtrtrtr'),
 (30, 2, 'HAINE', 'gkggygggg'),
+(33, 2, 'VIOLENCE', ''),
 (41, 100, 'ARNAQUE', 'ee'),
 (41, 101, 'HAINE', 'frf'),
 (41, 102, 'ARNAQUE', 'd'),
 (41, 103, 'ARNAQUE', 'sdsd'),
 (41, 104, 'HAINE', 'dddd'),
-(41, 105, 'VIOLENCE', 'zszsz');
+(41, 105, 'VIOLENCE', 'zszsz'),
+(59, 41, 'HAINE', 'vyuyu'),
+(61, 2, 'ARNAQUE', 'zee'),
+(61, 3, 'VIOLENCE', 'ddd'),
+(61, 4, 'HAINE', 'ffff'),
+(61, 5, 'HAINE', ''),
+(61, 6, 'AUTRE', 'ffff'),
+(61, 41, 'HAINE', 'oop');
 
 -- --------------------------------------------------------
 
@@ -1922,7 +2023,7 @@ INSERT INTO `tarifresto` (`idResto`, `tarif`, `portefeuilleVirtuel`) VALUES
 (15, '7.000', '12.800'),
 (16, '2.700', '0.000'),
 (17, '3.500', '0.000'),
-(41, '0.500', '99.000');
+(41, '1.000', '22.000');
 
 -- --------------------------------------------------------
 
@@ -1961,7 +2062,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `mail` (`mail`),
   UNIQUE KEY `confirm_token` (`confirm_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateurs`
@@ -2000,9 +2101,16 @@ INSERT INTO `utilisateurs` (`id`, `role`, `mail`, `mdp`, `salt`, `numTel`, `A_pa
 (36, 'us', 'sedkikik@donation.tn', '$2a$05$9CmVI457UREgV5N7wQnfV.FeQ3w.FTAaQHR/.P.3aPJT/2b3CKImy', '6fef4d7-ac6c-4', '0021624172824', 'Tunisie', 'sdds', 'image', 0, -1, 'ce3ac', NULL, 'sedki', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sedki', 'Homme', '2020-02-26 00:00:00', '2020-02-20 06:59:05'),
 (37, 'us', 'aazeae@gmail.com', '$2a$05$7qdytVyloLzRL/KiXi1.6OXGbNBlwgnVx3DogT.A2HkKs5h4fB1SK', '7720e9f-eb4e-4', '0021624172824', 'Tunisie', 'tunis', 'image', 0, -1, '31e39', NULL, 'azaza', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'zeaaze', 'Homme', '2020-02-05 00:00:00', '2020-02-20 07:01:04'),
 (38, 'us', 'ahmed.fourati@esprit.tn', '$2a$05$b8S0FwS/oD1/42ZXU1DUL.Z1DIig7jzBesvJOT.WtkREwBaMW4zqu', '9604785-b543-4', '0021655685313', 'Tunisie', 'tunis', 'image', 0, 1, '085ce', NULL, 'amine', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'aazaza', 'Femme', '2020-02-05 00:00:00', '2020-02-20 11:39:42'),
-(39, 'org', 'amingongie98gongi@gmail.com', '$2a$05$uzdJ3kOGoPNVphHRGgix/.WH7UokDKQn65el4DJVL6gkMfX2s5XaG', '30ce4c9-067c-4', '0021655685313', 'Tunisie', 'tunis', 'C:\\Users\\Amine Gongi\\Desktop\\Esprit 3A\\PIDEV\\DoNationJava\\JavaFXApplicationWUI\\src\\images\\Novant logo.png', 0, 1, 'e261c', NULL, 'SOS', NULL, 'www.fb.com', 'www.site.com', 'c,eezfzf\nfzf\nzf\nz\nfz\nfzfzfzfzf', '1231AZ', NULL, 99.5421, 12.3, NULL, NULL, NULL, '2020-02-20 20:04:52'),
+(39, 'org', 'amingongie98gongi@gmail.com', '$2a$05$uzdJ3kOGoPNVphHRGgix/.WH7UokDKQn65el4DJVL6gkMfX2s5XaG', '30ce4c9-067c-4', '0021655685313', 'Tunisie', 'tunis', '8b5c477.jpg', 0, 1, 'e261c', NULL, 'SOS', NULL, 'www.fb.com', 'www.site.com', 'c,eezfzf\nfzf\nzf\nz\nfz\nfzfzfzfzf', '1231AZ', NULL, 99.5421, 12.3, NULL, NULL, NULL, '2020-02-20 20:04:52'),
 (40, 'us', 'pidevJava@esprit.tn', '$2a$05$4lsZmTcuK/FV7TkUq5WxUeaNIedEHcFGGCUb3oPN0fQqma0SoO48W', '1b7d748-11ba-4', '0021655685313', 'Tunisie', 'Tunis', 'C:\\Users\\Amine Gongi\\Desktop\\Esprit 3A\\PIDEV\\DoNationJava\\JavaFXApplicationWUI\\src\\images\\amineGongi.PNG', 0, 0, 'd12c5', NULL, 'amine', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pidev', 'Homme', '2020-01-02 00:00:00', '2020-02-21 08:38:06'),
-(41, 'resto', 'yessine.khanfir@esprit.tn', '$2a$05$.l2nRWj9oYBZpKpHiy105e.SI9rtRHtjJL6XvbTs6YsJmXC80zckG', '34c5967-652c-4', '0021655685313', 'Tunisie', 'tunis', 'image', 0, 1, '1e31b', NULL, 'khanfir', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'yessine', 'Homme', '2020-02-04 00:00:00', '2020-02-23 14:13:05');
+(41, 'resto', 'yessine.khanfir@esprit.tn', '$2a$05$.l2nRWj9oYBZpKpHiy105e.SI9rtRHtjJL6XvbTs6YsJmXC80zckG', '34c5967-652c-4', '0021655685313', 'Tunisie', 'tunis', 'head.png', 0, 1, '1e31b', NULL, 'khanfir', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'yessine', 'Homme', '2020-02-04 00:00:00', '2020-02-23 14:13:05'),
+(42, 'us', 'amine@gmail.com', '$2a$05$gbUHMfSTuL3cvsCaIc5fSO5EjaQI9Y.QzNx2Cf8DyDjWI2.EDNrMa', '7ea61ca-41d1-4', '+21655685313', 'Tunisia', 'La Goulette', 'image', 0, -1, 'd9276', NULL, 'azza', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'azaza', 'Homme', '2020-02-05 00:00:00', '2020-02-26 15:36:57'),
+(43, 'org', 'rctccece@gmail.com', '$2a$05$7Zh/NH4gQ2.z4SM6bHOfpOzrML131m2V0v7fhiAFV4lxwqAJzS15W', '7301c14-a8fb-4', '+21655685313', 'Tunisia', 'Tunis', 'image', 0, -1, '5d292', NULL, 'rct', NULL, 'www.fb.com', 'www.ffff.com', 'azeazeea\nazeazaze\nazeaea', 'aazazaz23232', NULL, 10.1969, 36.8491, NULL, NULL, NULL, '2020-02-26 16:09:07'),
+(44, 'us', 'addadad@gmail.com', '$2a$05$YTs4BmieXU8cF1LlNhRoPuRw5eSKJ9e/OG5gNqYVs9I2MCfkSTeoW', 'fa092c0-c6aa-4', '+21655123123', 'Tunisia', 'Tunis', 'image', 0, -1, '2ec9c', NULL, 'azadaz', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dazad', 'Homme', '2020-02-03 00:00:00', '2020-02-26 16:11:26'),
+(45, 'us', 'ammam@gmail.com', '$2a$05$ZdxSZw6g9pKebJRH1wT4Du9jj5n9uIXoGDPK2974asNqw8LwO.DF6', '18333d7-869f-4', '+21655685313', 'Tunisia', 'Tunis', 'image', 0, -1, '34043', NULL, 'amine', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'amine', 'Homme', '2019-11-06 00:00:00', '2020-02-26 19:31:37'),
+(46, 'us', 'zfzfzfz@', '$2a$05$Gs/TYtHvHtw7ZzWQtUZ9CuKQAcz0s4azG9FE9xuJR7NnnsfFj8yxq', '35dc452-a202-4', '+21655685313', 'Tunisia', 'Tunis', 'image', 0, -1, '9bb80', NULL, 'dzfeez', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'zffzf', 'Homme', '2020-02-12 00:00:00', '2020-02-26 19:32:48'),
+(47, 'us', 'azazaazaz@gmail.com', '$2a$05$ypWc14bPLeJSILHGbBvxDuWxSH4hfI5SPeeHOQJkPvZlF0rD4OVom', '092f2ed-47ef-4', '+21655685313', 'Tunisia', 'Tunis', '/images/user_male.png', 0, -1, '4317d', NULL, 'azaz', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'azaz', 'Homme', '2020-02-03 00:00:00', '2020-02-26 20:19:37'),
+(48, 'us', 'amine.maalouuuf@esprit.tn', '$2a$05$M9LAHJf11OZELFXVkqwoBOheK4sqN3UxorRnhD6iiBORTH5xvE.n2', 'a48da70-99d0-4', '+21655685313', 'Tunisia', 'Tunis', './src/images/user_male.png', 0, 1, '20c03', NULL, 'amine', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'maalouf', 'Homme', '2020-02-03 00:00:00', '2020-02-27 15:43:28');
 
 --
 -- Déclencheurs `utilisateurs`
@@ -2052,12 +2160,6 @@ ALTER TABLE `demandedesactivationcompte`
 ALTER TABLE `donrestaurant`
   ADD CONSTRAINT `fk_DonRestaurant_utilisateurs_Resto` FOREIGN KEY (`idResto`) REFERENCES `utilisateurs` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_DonRestaurant_utilisateurs_User` FOREIGN KEY (`idUser`) REFERENCES `utilisateurs` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `emplois`
---
-ALTER TABLE `emplois`
-  ADD CONSTRAINT `fk_emplois_categorieemplois` FOREIGN KEY (`idcategorie`) REFERENCES `categorie_emplois` (`id_categorie_emplois`);
 
 --
 -- Contraintes pour la table `historiqueconnexionuser`

@@ -225,7 +225,7 @@
                                  <children>
                                     <Label fx:id="lblTarifEmpty" layoutX="66.0" layoutY="56.0" prefHeight="34.0" prefWidth="398.0" textAlignment="CENTER" wrapText="true" />
                                     <JFXListView fx:id="listViewTarif" depthTest="ENABLE" layoutX="15.0" layoutY="36.0" onMouseClicked="#onSelectResto" prefHeight="300.0" prefWidth="500.0" style="-fx-border-width: 3; -fx-border-color: #D98532; -fx-border-radius: 5;" stylesheets="@../styles/dashbordadmin.css" />
-                                    <JFXListView fx:id="listViewDonResto" depthTest="ENABLE" layoutX="620.0" layoutY="36.0" prefHeight="300.0" prefWidth="500.0" style="-fx-border-width: 3; -fx-border-color: #D98532; -fx-border-radius: 5;" stylesheets="@../styles/dashbordadmin.css" />
+                                    <JFXListView fx:id="listViewDonResto" depthTest="ENABLE" layoutX="620.0" layoutY="36.0" prefHeight="300.0" prefWidth="521.0" style="-fx-border-width: 3; -fx-border-color: #D98532; -fx-border-radius: 5;" stylesheets="@../styles/dashbordadmin.css" />
                                     <Label fx:id="lblTarif" layoutX="181.0" layoutY="12.0" text="Liste des restaurants" textAlignment="CENTER">
                                        <font>
                                           <Font size="16.0" />

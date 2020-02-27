@@ -38,10 +38,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -157,14 +159,22 @@ public class DashbordAdmin_Aide_CategorieController implements Initializable {
         System.out.println(name);
         Categorie nouvelleCat = new Categorie(name);
         ServiceCategorie serCat = new ServiceCategorie();
+        
+
+        
         try {
+            if(!(name.isEmpty())){
             serCat.ajouter(nouvelleCat);
             Alert al = new Alert(Alert.AlertType.INFORMATION, "la Categorie "+name+" a été ajoutée avec succès!", ButtonType.OK);
             al.show();
-            
+            }
+            else{
+                Alert al = new Alert(Alert.AlertType.ERROR, "Veuillez saisir un nom pour la categorie", ButtonType.OK);
+            al.show();
+            }
         } catch (SQLException ex) {
             System.out.println("deja existante");
-            Alert al = new Alert(Alert.AlertType.ERROR, "Ooops! la Categorie "+name+" est deja Existante!", ButtonType.OK);
+            Alert al = new Alert(Alert.AlertType.ERROR, "Ooops! la Categorie "+name.toLowerCase()+" est deja Existante!", ButtonType.OK);
             al.show();
             Logger.getLogger(DashbordAdmin_Aide_CategorieController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -216,6 +226,7 @@ public class DashbordAdmin_Aide_CategorieController implements Initializable {
             int idCat = listCat.get(i).getId();
             String NomCat = listCat.get(i).getNom();
             
+            
             //Separator vertical entre les categories
             Separator h = new Separator(Orientation.VERTICAL);
             h.setPrefWidth(17);
@@ -228,25 +239,26 @@ public class DashbordAdmin_Aide_CategorieController implements Initializable {
             VBoxCat.setSpacing(5);
             VBoxCat.setStyle("-fx-background-color : #dddddd;");
             VBoxCat.setAlignment(Pos.CENTER);
-            VBoxCat.setPrefHeight(262);
+            VBoxCat.setPrefHeight(120);
             VBoxCat.setPrefWidth(170);
 
             //Label nom = new Label("Nom : " + listCat.get(i).getNom());
             Label nom = new Label(listCat.get(i).getNom());
-            
+            nom.getStyleClass().add("titrecatbox");
             //separateur horizontal entre nom et bouttons
             Separator sh = new Separator(Orientation.HORIZONTAL);
-            sh.setPrefHeight(80);
+            sh.setPrefHeight(30);
             sh.setVisible(false);
             
             
             //boutton supprimer Categorie = btnSupp            
-            FileInputStream inputSupp = new FileInputStream("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/controllers/delete.png");
+            FileInputStream inputSupp = new FileInputStream("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/images/hedi/delete.png");
             Image imageSupp = new Image(inputSupp);
             ImageView imageViewSupp = new ImageView(imageSupp);
             imageViewSupp.setFitHeight(20);
             imageViewSupp.setFitWidth(20);
-            Button btnSupp = new Button("Supprimer", imageViewSupp);
+            Button btnSupp = new Button("", imageViewSupp);
+            btnSupp.setTooltip(new Tooltip("Supprimer"));
             btnSupp.setMaxSize(100, 200);
             btnSupp.setOnAction((event) -> {       
                         ButtonType oui = new ButtonType("Oui", ButtonBar.ButtonData.OK_DONE);
@@ -270,12 +282,13 @@ public class DashbordAdmin_Aide_CategorieController implements Initializable {
                                         });
             
             //boutton modifier Categorie = btnModif
-            FileInputStream inputModif = new FileInputStream("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/controllers/edit.png");
+            FileInputStream inputModif = new FileInputStream("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/images/hedi/edit.png");
             Image imageModif = new Image(inputModif);
             ImageView imageViewModif = new ImageView(imageModif);
             imageViewModif.setFitHeight(20);
             imageViewModif.setFitWidth(20);
-            Button btnModif = new Button("Modifier", imageViewModif);
+            Button btnModif = new Button("", imageViewModif);
+            btnModif.setTooltip(new Tooltip("Modifier"));
             btnModif.setMaxSize(100, 200);
             btnModif.setOnAction((event) -> {
             System.out.println("Button Modif ");
@@ -300,11 +313,19 @@ public class DashbordAdmin_Aide_CategorieController implements Initializable {
                                 });
                                 });
             
+            //Hbox contient les bouttons
+            HBox hboxbtn = new HBox();
+            hboxbtn.getChildren().addAll(btnModif,btnSupp);
+            hboxbtn.setSpacing(10);
+            hboxbtn.setAlignment(Pos.CENTER);
+            
             //ajout des differents element representant une categorie dans un Vbox           
             VBoxCat.getChildren().add(nom);
             VBoxCat.getChildren().add(sh);
-            VBoxCat.getChildren().add(btnSupp);
-            VBoxCat.getChildren().add(btnModif);
+            //VBoxCat.getChildren().add(btnSupp);
+            //VBoxCat.getChildren().add(btnModif);
+            VBoxCat.getChildren().add(hboxbtn);
+            VBoxCat.getStyleClass().add("vboxbtncat");
 
             //vbx array contient les different Vbox(categories)
             vbx.add(VBoxCat);

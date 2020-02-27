@@ -322,9 +322,9 @@ public class GestionnaireUtilisateur {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(myAccountEmail));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getMail()));
-        message.setSubject("Donation , Votre Compte");
+        message.setSubject("Donation , Bienvenu");
         
-        String htmlCode = "<h1> Merci </h1> <br/> <h2><b>votre code confirmation :" + user.getConfirmation_token() + "</b></h2>";
+        String htmlCode = "<h1> Bienvenu Dans Donation </h1> <br/> il ne vous reste qu'une étape à faire avant d'etre parmis notre grande communauté <br/> <h2><b>votre code confirmation :" + user.getConfirmation_token() + "</b></h2>";
 
             message.setContent(htmlCode, "text/html");
             //Send mail
@@ -385,7 +385,7 @@ public class GestionnaireUtilisateur {
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getNumTel()+"@sms.clicksend.com"));
         message.setSubject("Donation");
         
-        String htmlCode = "<h1> Merci </h1> <br/> <b>votre code de confirmation :" + user.getConfirmation_token() + "</b>";
+        String htmlCode = "<h1> Hi "+user.getNom()+" <br/>Merci </h1> <br/> <b>votre code de confirmation :" + user.getConfirmation_token() + "</b>";
         
             
             
@@ -431,16 +431,18 @@ public class GestionnaireUtilisateur {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(myAccountEmail));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getNumTel()+"@voice.clicksend.com"));
-        message.setSubject("Donation");
-        
-        String htmlCode = "Bienvenu <br/> Merci d'avoir intégré Donation la plateforme de solidarité Tunisienne <br/> votre code d'activation est le : " + user.getConfirmation_token() + "<br/><br/> votre code d'activation est le : " + user.getConfirmation_token() + "</b> Merci et bienvenu dans DoNation.";
-        
+        //message.setRecipient(Message.RecipientType.TO, new InternetAddress("amine.gongi@esprit.tn"));
+        message.setSubject("");
+        String code = user.getConfirmation_token().replaceAll(".", "$0 ");
+        String htmlCode = "Bienvenu dans Donation <br/> Votre code d'activation est le : " + code + "<br/><br/> votre code d'activation est le : " + code + "<br/><br/> bienvenu dans Donation.";
             
+        System.out.println(htmlCode);
             
-            message.setContent(htmlCode, "text/html");
-            //Send mail
-            Transport.send(message);
-            System.out.println("Phone call Confirm key OK");
+        message.setContent(htmlCode, "text/html");
+        
+        //Send mail
+        Transport.send(message);
+        System.out.println("Phone call Confirm key OK");
 
         } catch (Exception ex) {
             System.out.println("Phone call Confirm key Problem");

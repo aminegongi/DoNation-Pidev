@@ -99,14 +99,15 @@ public class JavaFXApplicationWUI extends Application {
         
         //Graphique UI login Inscri + Activation
         
-        Parent root = FXMLLoader.load(getClass().getResource("/views/UiLogin.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/views/UiLogin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/gestionemploiscategorie.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/views/DashbordAdmin.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/views/DashbordAdmin_NewsletterFXML.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/views/DashbordAdminResto.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/views/DashbordAdmin_Aide.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/views/afficherPublicite.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/views/DashbordAdmin_Cagnotte.fxml"));
 
         Scene scene = new Scene(root);
-        //stage.setResizable(false); // taille fixe
+        stage.setResizable(false); // taille fixe
 
          
          /*stage.initStyle(StageStyle.UTILITY);

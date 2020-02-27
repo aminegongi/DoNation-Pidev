@@ -87,6 +87,8 @@ public class Dashbordadmin_NewsletterFXMLController implements Initializable {
     private TableColumn<Newsletter, String> colCorps;
     @FXML
     private TableColumn<Newsletter, String> ColEtat;
+    @FXML
+    private JFXButton btnSendNews;
 
     /**
      * Initializes the controller class.
@@ -183,7 +185,6 @@ public class Dashbordadmin_NewsletterFXMLController implements Initializable {
         htmlCorps.setHtmlText("");
         affichageTable();
     }
-
     @FXML
     private void modifLib(TableColumn.CellEditEvent<Newsletter, String> event) {
         Newsletter n = tableViewNews.getSelectionModel().getSelectedItem();
@@ -231,6 +232,40 @@ public class Dashbordadmin_NewsletterFXMLController implements Initializable {
         alert.showAndWait();
         }
     }
+
+    @FXML
+    private void sendNews(ActionEvent event) {
+        Newsletter selectedItem = tableViewNews.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null){
+            if(selectedItem.getDateEnvoi()==null){
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Confirmer ? ");
+                alert.setContentText("vous voulez vraiment envoyer cette Newsletter : "+selectedItem.getLibelle());   
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    GestionnaireNewsletter gn = new GestionnaireNewsletter() ; 
+                    gn.sendNews(selectedItem);
+                    affichageTable();
+                }
+            }
+            else{
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Message d'information");
+                alert.setHeaderText(null);
+                alert.setContentText("Newsletter déja envoyer");
+                alert.showAndWait();
+            }
+
+        }
+        else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Message d'information");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner un element à envoyer");
+            alert.showAndWait();
+        }
+    }
+
 
 
 

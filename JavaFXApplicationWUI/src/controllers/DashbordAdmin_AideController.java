@@ -8,9 +8,12 @@ package controllers;
 import Entities.Categorie;
 import Entities.DemandeAide;
 import Entities.StatCategorie;
+import Entities.User;
+import Services.ServiceBarchart;
 import Services.ServiceCategorie;
 import Services.ServiceDemandeAide;
 import Services.ServiceStatCategorie;
+import Services.ServiceUser;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -36,9 +39,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -184,14 +189,74 @@ public class DashbordAdmin_AideController implements Initializable {
     private void AfficherDerniereDmnd() throws SQLException{
         ServiceDemandeAide serDmnd = new ServiceDemandeAide();
         DemandeAide dmnd = serDmnd.derniereDmndAjout();
+        
+        
+        int idUser = dmnd.getIdUser();
+            ServiceUser serUser = new ServiceUser();
+            User  user = serUser.readById(idUser);
+            String nomUser = user.getNom();
+            String prenomUser = user.getPrenom();
+            String mailUser = user.getMail();
+            
+            int idDmnd = dmnd.getId();
+            String TitreDmnd = dmnd.getTitre();
+            
+            
+            //Vbox container pour l'affichage d'une categorie
+            VBox VBoxCat = new VBox();
+            //VBoxCat.setSpacing(5);
+            //*******************************style modified**********************************************************************
+            //VBoxCat.setStyle("-fx-background-color : #dddddd;");
+            //VBoxCat.setStyle("-fx-border-radius: 30px;");
+            //VBoxCat.getStyleClass().clear();
+            VBoxCat.getStyleClass().add("vbox");
+            
+            VBoxCat.setAlignment(Pos.CENTER);
+            //VBoxCat.setPrefHeight(262);
+            VBoxCat.setPrefHeight(300);
+           // VBoxCat.setPrefWidth(170);
+           VBoxCat.setPrefWidth(350);
+
+            //Label titre = new Label("Titre : " + listDmnd.get(i).getTitre());
+            Label titreLbl = new Label(dmnd.getTitre());
+            titreLbl.getStyleClass().add("titre");
+            //Label description
+            Label descriptionLbl = new Label(dmnd.getDescription());
+            descriptionLbl.getStyleClass().add("desc");
+            //Label publier par
+            Label publierParLbl = new Label("Publiée par :");
+            publierParLbl.getStyleClass().add("pbParLbl");
+            //Label nomUser et prenomUser
+            Label nomPrenomUserLbl = new Label(nomUser+" "+prenomUser);
+            //Label mailUser
+            Label mailUserLbl = new Label(mailUser);
+            mailUserLbl.getStyleClass().add("mailLbl");
+            //Label nombre reaction jaime
+            Label nbrReactLbl = new Label("J'aime : "+dmnd.getNbReactions());
+            nbrReactLbl.getStyleClass().add("aimeLbl");
+            
+            
+            
+            VBoxCat.getChildren().add(titreLbl);
+            VBoxCat.getChildren().add(descriptionLbl);
+            
+            VBoxCat.getChildren().add(publierParLbl);
+            VBoxCat.getChildren().add(nomPrenomUserLbl);
+            VBoxCat.getChildren().add(mailUserLbl);
+            
+            VBoxCat.getChildren().add(nbrReactLbl);
+        
+       /*
         //Recuperation des different attributs
         String titre = dmnd.getTitre();
         String description = dmnd.getDescription();
         String nbrReaction = Integer.toString(dmnd.getNbReactions());
+        
         //Creation des label
         Label titreLbl = new Label("Titre: "+titre);
         Label descriptionLbl = new Label("Description: "+description);
         Label nbrReactionLbl = new Label("Nombre de reaction : "+nbrReaction);
+        
         //Creation de container VBox
         VBox vBoxDmnd = new VBox();
         vBoxDmnd.setSpacing(5);
@@ -199,12 +264,14 @@ public class DashbordAdmin_AideController implements Initializable {
         vBoxDmnd.setAlignment(Pos.CENTER);
         vBoxDmnd.setPrefHeight(262);
         vBoxDmnd.setPrefWidth(170);
+        
         //Ajout attributs au container VBox
         vBoxDmnd.getChildren().add(titreLbl);
         vBoxDmnd.getChildren().add(descriptionLbl);
         vBoxDmnd.getChildren().add(nbrReactionLbl);
+        */
         paneDerniereDmnd.getChildren().clear();
-        paneDerniereDmnd.getChildren().add(vBoxDmnd);
+        paneDerniereDmnd.getChildren().add(VBoxCat);
         
     }
     
@@ -219,15 +286,17 @@ public class DashbordAdmin_AideController implements Initializable {
 
         //Creation des label
         Label nomLbl = new Label(nom);
+        nomLbl.getStyleClass().add("titrecatbox");
         
  //boutton supprimer Categorie = btnSupp   
-        System.out.println("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/controllers/delete.png");
-            FileInputStream inputSupp = new FileInputStream("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/controllers/delete.png");
+       // System.out.println("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/controllers/delete.png");
+            FileInputStream inputSupp = new FileInputStream("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/images/hedi/delete.png");
             Image imageSupp = new Image(inputSupp);
             ImageView imageViewSupp = new ImageView(imageSupp);
             imageViewSupp.setFitHeight(20);
             imageViewSupp.setFitWidth(20);
-            Button btnSupp = new Button("Supprimer", imageViewSupp);
+            Button btnSupp = new Button("", imageViewSupp);
+            btnSupp.setTooltip(new Tooltip("Supprimer"));
             btnSupp.setMaxSize(100, 200);
             btnSupp.setOnAction((event) -> {       
                         ButtonType oui = new ButtonType("Oui", ButtonBar.ButtonData.OK_DONE);
@@ -254,12 +323,13 @@ public class DashbordAdmin_AideController implements Initializable {
                                         });
 
             //boutton modifier Categorie = btnModif
-            FileInputStream inputModif = new FileInputStream("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/controllers/edit.png");
+            FileInputStream inputModif = new FileInputStream("C:/Users/Amine Gongi/Desktop/Esprit 3A/PIDEV/DoNationJava/JavaFXApplicationWUI/src/images/hedi/edit.png");
             Image imageModif = new Image(inputModif);
             ImageView imageViewModif = new ImageView(imageModif);
             imageViewModif.setFitHeight(20);
             imageViewModif.setFitWidth(20);
-            Button btnModif = new Button("Modifier", imageViewModif);
+            Button btnModif = new Button("", imageViewModif);
+            btnModif.setTooltip(new Tooltip("Modifier"));
             btnModif.setMaxSize(100, 200);
             btnModif.setOnAction((event) -> {
             System.out.println("Button Modif ");
@@ -286,21 +356,32 @@ public class DashbordAdmin_AideController implements Initializable {
             
             //separateur horizontal entre nom et bouttons
             Separator sh = new Separator(Orientation.HORIZONTAL);
-            sh.setPrefHeight(80);
+            sh.setPrefHeight(30);
             sh.setVisible(false);            
+            
+            //Hbox contient les bouttons
+            HBox hboxbtn = new HBox();
+            hboxbtn.getChildren().addAll(btnModif,btnSupp);
+            hboxbtn.setSpacing(10);
+            hboxbtn.setAlignment(Pos.CENTER);
+            
+            
             
         //Creation de container VBox
         VBox vBoxCat = new VBox();
         vBoxCat.setSpacing(5);
         vBoxCat.setStyle("-fx-background-color : #dddddd;");
         vBoxCat.setAlignment(Pos.CENTER);
-        vBoxCat.setPrefHeight(262);
+        vBoxCat.setPrefHeight(120);
         vBoxCat.setPrefWidth(170);
         //Ajout attributs au container VBox
         vBoxCat.getChildren().add(nomLbl);
         vBoxCat.getChildren().add(sh);
-        vBoxCat.getChildren().add(btnSupp);
-        vBoxCat.getChildren().add(btnModif);
+        //vBoxCat.getChildren().add(btnSupp);
+        //vBoxCat.getChildren().add(btnModif);
+        vBoxCat.getChildren().add(hboxbtn);
+        vBoxCat.getStyleClass().add("vboxbtncat");
+        
         paneDerniereCat.getChildren().clear();
         paneDerniereCat.getChildren().add(vBoxCat);
         
@@ -323,16 +404,17 @@ public class DashbordAdmin_AideController implements Initializable {
 
 
     public void afficherStatCat() throws SQLException{
-    
+        /*
         ServiceStatCategorie serStatCat = new ServiceStatCategorie();
         ServiceCategorie serCat = new ServiceCategorie();
         List<StatCategorie> listStatCat = serStatCat.nbrDmndAllCat(serCat.readAll());
         //ListView listViewStat = new ListView();
         listViewStat.getItems().addAll(listStatCat);
-        
         PaneStatCat.getChildren().clear();
         PaneStatCat.getChildren().add(listViewStat);
-        
-        
+         */
+        VBox vboxChart = ServiceBarchart.makingChart();
+        PaneStatCat.getChildren().clear();
+        PaneStatCat.getChildren().add(vboxChart);
     }
 }

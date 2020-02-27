@@ -52,6 +52,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
 
 /**
  * FXML Controller class
@@ -233,6 +234,15 @@ public class AfficherPubliciteController implements Initializable {
 
     @FXML
     private void ajouterPublicite(ActionEvent event) throws IOException {
+        if(TitrePublicite.getText().isEmpty() || marquePublicite.getText().isEmpty() || descriptionPublicite.getText().isEmpty()){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez renseinger les champs avant d'ajouter une publicité");
+
+            alert.showAndWait();
+        }
+        else{
          DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
          Date date = new Date();
         
@@ -247,7 +257,12 @@ public class AfficherPubliciteController implements Initializable {
         marque.setCellValueFactory(new PropertyValueFactory<>("marque"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         dateAjout.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
-        
+        TitrePublicite.setText("");
+        descriptionPublicite.setText("");
+        marquePublicite.setText("");
+        publiciteImageCommentaire.setText("");
+        imagePublicitePreview.setImage(null);
+        }
     }
 
    @FXML
@@ -297,8 +312,23 @@ public class AfficherPubliciteController implements Initializable {
         if(selectedItem!=null){
         
             PubliciteRegionService prs = new PubliciteRegionService() ; 
+            
+            JFileChooser chooser = new JFileChooser();
+    chooser.setCurrentDirectory(new java.io.File("."));
+    chooser.setDialogTitle("choosertitle");
+    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    chooser.setAcceptAllFileFilterUsed(false);
+
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+      System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+      System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+       prs.ecrirePdf(selectedItem, chooser.getSelectedFile());
+    } else {
+      System.out.println("No Selection ");
+    }
+  
         
-        prs.ecrirePdf(selectedItem);
+       
         
         
         }
@@ -341,6 +371,8 @@ public class AfficherPubliciteController implements Initializable {
         }
         
     }
+
+   
 
     
    

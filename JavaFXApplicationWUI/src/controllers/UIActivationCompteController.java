@@ -20,7 +20,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -41,6 +43,8 @@ public class UIActivationCompteController implements Initializable {
     private Label labelMail;
     @FXML
     private StackPane stackActivation;
+    @FXML
+    private ImageView imgback;
 
     /**
      * Initializes the controller class.
@@ -48,6 +52,14 @@ public class UIActivationCompteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        String mail;
+        if(UiInscriptionController.mailToVal == null){
+            mail=UiLoginController.mailToVal;
+        }
+        else{
+            mail=UiInscriptionController.mailToVal;
+        }
+        txtMail.setText(mail);
     }
 
     @FXML
@@ -72,6 +84,18 @@ public class UIActivationCompteController implements Initializable {
         }
         txtMail.clear();
         txtCodeAct.clear();
+    }
+
+    @FXML
+    private void BackToLogin(MouseEvent event) {
+        Pane newLoadedPane;
+                    try {
+                        newLoadedPane = FXMLLoader.load(getClass().getResource("/views/UiLogin.fxml"));
+                        stackActivation.getChildren().clear();
+                        stackActivation.getChildren().add(newLoadedPane);
+                    } catch (IOException ex) {
+                        Logger.getLogger(UiLoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
     }
 
 

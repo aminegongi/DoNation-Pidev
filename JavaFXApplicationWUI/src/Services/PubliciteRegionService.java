@@ -41,6 +41,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONObject;
 import static Utils.jsonReader.readJsonFromUrl;
+import java.io.File;
 
 /**
  *
@@ -73,7 +74,7 @@ public class PubliciteRegionService {
     
     }
     
-    public void ecrirePdf(Publicité  p ){
+    public void ecrirePdf(Publicité  p ,File SavePath){
     
         List<PubliciteRegion> list = new ArrayList<>() ;
         list= this.getInfo(p);
@@ -90,8 +91,9 @@ public class PubliciteRegionService {
    Font bf12 = new Font(FontFamily.TIMES_ROMAN, 12); 
  
    //file path
-   
-   docWriter = PdfWriter.getInstance(doc , new FileOutputStream("rendu.pdf"));
+      System.out.println(SavePath.toString()+"\\rendu.pdf");
+      System.out.println("\\");
+   docWriter = PdfWriter.getInstance(doc , new FileOutputStream(SavePath.toString()+"\\rendu.pdf"));
     Image background = Image.getInstance("./publicitePdfBackground.png");
    //document header attributes
    doc.addAuthor("betterThanZero");

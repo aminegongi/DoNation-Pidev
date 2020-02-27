@@ -251,24 +251,23 @@ public class GestionnaireNewsletter {
     }
     
     public void sendNews(Newsletter n){
-        String qSql = "UPDATE `newsletter` SET dateEnvoi=SYSDATE() WHERE id=?";
-
-        PreparedStatement pst = null;
-        try {
-            pst = cnx.prepareStatement(qSql);
-   
-            pst.setInt(1,n.getId());
-            
-            System.out.println(pst);
-            pst.executeUpdate();
-            System.out.println("News envoi Bravo ");
-        } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode());
-            System.out.println("News envoi Erreur !!!");
+        if(sendMail(n)){
+            String qSql = "UPDATE `newsletter` SET dateEnvoi=SYSDATE() WHERE id=?";
+            PreparedStatement pst = null;
+            try {
+                pst = cnx.prepareStatement(qSql);
+                pst.setInt(1,n.getId());
+                System.out.println(pst);
+                pst.executeUpdate();
+                System.out.println("News envoi Bravo ");
+            } catch (SQLException ex) {
+                System.out.println(ex.getErrorCode());
+                System.out.println("News envoi Erreur !!!");
+            }
         }
     }
-    /*
-    public static void sendMail(Newsletter user) {
+    
+    public boolean sendMail(Newsletter news) {
         System.out.println("Preparing to send email");
         Properties properties = new Properties();
 
@@ -282,9 +281,9 @@ public class GestionnaireNewsletter {
         properties.put("mail.smtp.port", "587");
 
         //Your gmail address
-        String myAccountEmail = "aminegongiesprit@gmail.com";
+        String myAccountEmail = "aminegongiesprit@gmail.com"; //DoNation.Pidev@gmail.com
         //Your gmail password
-        String password = "Amine1998";
+        String password = "Amine1998"; //Donation2020
 
         //Create a session with account credentials
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -293,34 +292,43 @@ public class GestionnaireNewsletter {
                 return new PasswordAuthentication(myAccountEmail, password);
             }
         });
-
+        System.out.println(getInscriNews());
         //Prepare email message
-        Message message = prepareMessage(session, myAccountEmail, user.getMail(), user);
-
+        //Message message = prepareMessage(session, myAccountEmail, user.getMail(), user);
         try {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(myAccountEmail));
+        InternetAddress[] iAdressArray = InternetAddress.parse(getInscriNews());
+        message.setRecipients(Message.RecipientType.TO, iAdressArray);
+        message.setSubject(news.getObjetMail());
+        
+        String htmlCode = news.getCoprsMail();
+
+            message.setContent(htmlCode, "text/html");
             //Send mail
             Transport.send(message);
-            System.out.println("Mail Confirm key OK");
-
-        } catch (MessagingException ex) {
-            System.out.println("Mail Confirm key Problem");
-        }
-        System.out.println("Message sent successfully");
-    }
-
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient, Utilisateur user) {
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(myAccountEmail));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Donation , Votre Compte");
-            String htmlCode = "<h1> Merci </h1> <br/> <h2><b>votre code confirmation :" + user.getConfirmation_token() + "</b></h2>";
-            message.setContent(htmlCode, "text/html");
-            return message;
+            System.out.println("News send OK");
+            return true;
         } catch (Exception ex) {
-
+            System.out.println("News send Problem");
+            return false;
         }
-        return null;
     }
-*/
+    
+    public String getInscriNews(){
+        String newsInscri = "";
+        String qSql = "SELECT mailNews FROM `inscrinewsletter`";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(qSql);
+            while (rs.next()) {
+                newsInscri+=rs.getString(1)+",";
+            }
+            newsInscri=newsInscri.substring(0, newsInscri.length() - 1);
+            System.out.println("News Select Bravo ");
+        } catch (SQLException ex) {
+            System.out.println("News Select Erreur !!!");
+        }
+        return newsInscri;
+    }
 }

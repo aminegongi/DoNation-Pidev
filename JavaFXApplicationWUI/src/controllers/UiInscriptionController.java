@@ -77,7 +77,8 @@ public class UiInscriptionController implements Initializable {
     Label Errpass = new Label("  ");
     JFXPasswordField tfConfirmPassword = new JFXPasswordField();
     Label ErrConpass = new Label("Mot de passe non identique ");
-    JFXComboBox<String> cbPays = new JFXComboBox<>();
+    //JFXComboBox<String> cbPays = new JFXComboBox<>();
+    JFXTextField tfPays = new JFXTextField();    
     Label ErrPays = new Label("Champ Obligatoire ! ");
     JFXTextField tfVille = new JFXTextField();
     Label ErrVille = new Label("Champ Obligatoire ! ");
@@ -111,7 +112,15 @@ public class UiInscriptionController implements Initializable {
     private RadioButton rbtVerifSMS;
     @FXML
     private RadioButton rbtVerifPhone;
-
+    
+    String AIP=null;
+    String pays;
+    String region; 
+    String idn;
+    String lon;
+    String lat;
+    
+    public static String mailToVal; 
     /**
      * Initializes the controller class.
      */
@@ -120,20 +129,40 @@ public class UiInscriptionController implements Initializable {
         // TODO
         //Load Country
         //cbPays.getItems
-        /*
+        try
+        { 
+            URL url_name = new URL("http://checkip.amazonaws.com/"); // wala  http://bot.whatismyipaddress.com
+            BufferedReader bf = new BufferedReader(new InputStreamReader(url_name.openStream())); 
+            AIP = bf.readLine().trim(); 
+        } 
+        catch (Exception e) 
+        { 
+            AIP = "IP Prob" ;
+        } 
+        
          JSONObject json = null;
          try {
-         json = readJsonFromUrl("https://ipapi.co/196.229.165.86/json/");
+         json = readJsonFromUrl("https://api.ipgeolocation.io/ipgeo?apiKey=f2d99b10637d4a90b8084db4c8a9dc15&ip="+AIP);
          } catch (IOException ex) {
          System.out.println("ezfzezfzfzz");
          } catch (JSONException ex) {
          System.out.println("ezfzezfzfzz");
          }
-         System.out.println(json.toString());
-         */
-
+         
+         //ystem.out.println(json.toString());
+         //System.out.println(json.get("country_name"));
+         pays =json.get("country_name").toString();
+         region=json.get("city").toString();
+         idn = json.get("calling_code").toString();
+         lat= json.get("latitude").toString();
+         lon =json.get("longitude").toString();
+         
+         
         //System.out.println(json.get("name"));
         CBType.getItems().addAll("Utilisateur Simple", "Organisation", "Restaurant", "Entreprise");
+        
+        tfVille.setText(region);
+        
         //CBType.getItems().add("Entreprise");
     }
 
@@ -167,7 +196,7 @@ public class UiInscriptionController implements Initializable {
         tfMail.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (gUser.checkMail(tfMail.getText())) {
+                if (gUser.checkMail(tfMail.getText()) ) {
                     btInscri.setDisable(true);
                     ErrMail.setVisible(true);
                 } else {
@@ -202,7 +231,6 @@ public class UiInscriptionController implements Initializable {
         ErrConpass.setVisible(false);
 
         tfConfirmPassword.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
             @Override
             public void handle(KeyEvent event) {
                 if (tfPassword.getText().equals(tfConfirmPassword.getText())) {
@@ -215,7 +243,7 @@ public class UiInscriptionController implements Initializable {
             }
         });
 
-        tfTel.setPromptText("Votre Téléphone (avec IDN pays) : ");
+        tfTel.setPromptText("Votre Téléphone (Sans IDN pays): "+idn);
         tfTel.setLabelFloat(true);
 
         ErrTel.setTextFill(Color.web("#FF0000"));
@@ -235,12 +263,17 @@ public class UiInscriptionController implements Initializable {
             }
         });
 
-        cbPays.getItems().addAll("Tunisie", "Maroc", "Italie", "France", "Malte");
-
+        //cbPays.getItems().addAll("Tunisie", "Maroc", "Italie", "France", "Malte");
+        tfPays.setText(pays);
+        tfPays.setDisable(true);
+        tfPays.setPromptText("Votre Pays :");
+        tfPays.setLabelFloat(true);
         ErrPays.setTextFill(Color.web("#FF0000"));
         ErrPays.setVisible(false);
 
         tfVille.setPromptText("Votre Ville : ");
+        tfVille.setText(region);
+        tfVille.setDisable(true);
         tfVille.setLabelFloat(true);
 
         ErrVille.setTextFill(Color.web("#FF0000"));
@@ -278,8 +311,7 @@ public class UiInscriptionController implements Initializable {
 
             ErrDateN.setTextFill(Color.web("#FF0000"));
             ErrDateN.setVisible(false);
-
-            VBoxInscri.getChildren().addAll(tfNom, ErrNom, tfPrenom, ErrPnom, tfMail, ErrMail, tfPassword, Errpass, tfConfirmPassword, ErrConpass, tfTel, ErrTel, cbPays, ErrPays, tfVille, ErrVille, cbGenre, ErrGenre, dateP, ErrDateN);
+            VBoxInscri.getChildren().addAll(tfNom, ErrNom, tfPrenom, ErrPnom, tfMail, ErrMail, tfPassword, Errpass, tfConfirmPassword, ErrConpass, tfTel , ErrTel, tfPays, ErrPays, tfVille, ErrVille, cbGenre, ErrGenre, dateP, ErrDateN);
         } 
         else if (CBType.getValue().equals("Organisation")) {
             
@@ -299,7 +331,7 @@ public class UiInscriptionController implements Initializable {
             desc.setLabelFloat(true);
             Label ErrDesc = new Label(" ");
 
-            VBoxInscri.getChildren().addAll(tfNom, ErrNom, tfMail, ErrMail, tfPassword, Errpass, tfConfirmPassword, ErrConpass, tfTel, ErrTel, cbPays, ErrPays, tfVille, ErrVille,pageFb,ErrFB ,siteWeb,ErrWeb ,numVisa,ErrVisa,desc,ErrDesc);
+            VBoxInscri.getChildren().addAll(tfNom, ErrNom, tfMail, ErrMail, tfPassword, Errpass, tfConfirmPassword, ErrConpass, tfTel, ErrTel, tfPays, ErrPays, tfVille, ErrVille,pageFb,ErrFB ,siteWeb,ErrWeb ,numVisa,ErrVisa,desc,ErrDesc);
         }
     }
 
@@ -335,12 +367,12 @@ public class UiInscriptionController implements Initializable {
             ErrConpass.setVisible(true);
             btInscri.setDisable(true);
         }
-        if (cbPays.getValue() == null) {
+        if (tfPays.getText() == null) {
             x++;
             ErrConpass.setVisible(true);
             btInscri.setDisable(true);
         }
-        System.out.println(cbPays.getValue());
+        System.out.println(tfPays.getText());
         if (tfVille.getText().equals("")) {
             x++;
             ErrVille.setVisible(true);
@@ -362,10 +394,11 @@ public class UiInscriptionController implements Initializable {
 
     @FXML
     private void Inscri(ActionEvent event) {
+        mailToVal=tfMail.getText();
         if (CBType.getValue().equals("Utilisateur Simple")) {
             GestionnaireUtilisateur_Simple gus = new GestionnaireUtilisateur_Simple();
             if (!CheckBeforeInscriUS()) {
-                Utilisateur_Simple us = new Utilisateur_Simple(tfPrenom.getText(), cbGenre.getValue(), Date.valueOf(dateP.getValue()), tfMail.getText(), tfPassword.getText(), "Bsalt", tfTel.getText(), new Adresse(cbPays.getValue(), tfVille.getText()), "image", 0, tfNom.getText());
+                Utilisateur_Simple us = new Utilisateur_Simple(tfPrenom.getText(), cbGenre.getValue(), Date.valueOf(dateP.getValue()), tfMail.getText(), tfPassword.getText(), "Bsalt", idn+tfTel.getText(), new Adresse(tfPays.getText(), tfVille.getText()), "image", 0, tfNom.getText());
 
                 int mv = -1;
                 if (rbtVerifMail.isSelected()) {
@@ -397,7 +430,7 @@ public class UiInscriptionController implements Initializable {
             }
         } else if (CBType.getValue().equals("Organisation")) {
             GestionnaireOrganisation gOrg = new GestionnaireOrganisation();
-            Organisation org = new Organisation(numVisa.getText(), pageFb.getText(), siteWeb.getText(), desc.getText(), (float) 12.3, (float)99.542123,tfMail.getText(), tfPassword.getText(), "Bsalt", tfTel.getText(), new Adresse(cbPays.getValue(), tfVille.getText()), "image", 0, tfNom.getText());
+            Organisation org = new Organisation(numVisa.getText(), pageFb.getText(), siteWeb.getText(), desc.getText(), new Float(lat), new Float(lon) ,tfMail.getText(), tfPassword.getText(), "Bsalt", idn+tfTel.getText(), new Adresse(tfPays.getText(), tfVille.getText()), "image", 0, tfNom.getText());
             int mv = -1;
                 if (rbtVerifMail.isSelected()) {
                     mv = 1;

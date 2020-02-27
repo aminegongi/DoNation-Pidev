@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1400.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashbordAdmin_AideController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1400.0" styleClass="mainFxmlClass" stylesheets="@../styles/dashbordadmin.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashbordAdmin_AideController">
    <stylesheets>
       <URL value="@styles/dashbordadmin.css" />
    </stylesheets>
@@ -261,9 +261,9 @@
                                                                   <Insets bottom="30.0" left="30.0" top="20.0" />
                                                                </padding>
                                                             </Label>
-                                                            <Pane fx:id="PaneStatCat" prefHeight="531.0" prefWidth="574.0" style="-fx-background-color: #dddddd;">
+                                                            <Pane fx:id="PaneStatCat" prefHeight="414.0" prefWidth="574.0" style="-fx-background-color: #dddddd;">
                                                                <children>
-                                                                  <ListView fx:id="listViewStat" layoutX="78.0" layoutY="84.0" prefHeight="380.0" prefWidth="408.0" style="-fx-border-width: 2; -fx-border-color: #d98532;" />
+                                                                  <ListView fx:id="listViewStat" layoutX="78.0" layoutY="84.0" prefHeight="380.0" prefWidth="408.0" style="-fx-border-width: 2; -fx-border-color: #d98532;" visible="false" />
                                                                </children>
                                                             </Pane>
                                                          </children>

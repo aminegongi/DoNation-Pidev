@@ -67,7 +67,8 @@ public class Utilisateur {
         this.salt = salt;
         this.numTel = numTel;
         this.adresse = adresse;
-        this.image = image;
+        //this.image = image;
+        this.image = "./src/images/user_male.png";
         this.pointXP = pointXP;
         this.enabled = enabled;
         this.confirmation_token = confirmation_token;
@@ -84,7 +85,8 @@ public class Utilisateur {
         this.salt = UUID.randomUUID().toString().substring(1, 15);
         this.numTel = numTel;
         this.adresse = adresse;
-        this.image = image;
+        this.image = "./src/images/user_male.png";
+        //this.image = image;
         this.pointXP = pointXP;
 
         int enabled = -1;

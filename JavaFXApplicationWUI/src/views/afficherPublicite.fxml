@@ -219,27 +219,31 @@
                                  <content>
                                     <Pane prefHeight="826.0" prefWidth="1174.0">
                                        <children>
-                                          <TableView fx:id="tableViewPublicite" editable="true" layoutX="58.0" layoutY="28.0" prefHeight="591.0" prefWidth="620.0">
+                                          <TableView fx:id="tableViewPublicite" editable="true" layoutX="58.0" layoutY="28.0" prefHeight="386.0" prefWidth="612.0">
                                              <columns>
                                                 <TableColumn fx:id="titre" onEditCommit="#modifierTitre" prefWidth="108.0" text="Titre" />
-                                                <TableColumn fx:id="marque" onEditCommit="#modifierMarque" prefWidth="128.0" text="Marque" />
-                                                <TableColumn fx:id="description" onEditCommit="#modifierDescription" prefWidth="228.0" text="Description" />
-                                                <TableColumn fx:id="dateAjout" prefWidth="151.0" text="Date D'ajout" />
+                                                <TableColumn fx:id="marque" onEditCommit="#modifierMarque" prefWidth="152.33334350585938" text="Marque" />
+                                                <TableColumn fx:id="description" onEditCommit="#modifierDescription" prefWidth="171.66665649414062" text="Description" />
+                                                <TableColumn fx:id="dateAjout" prefWidth="184.33331298828125" text="Date D'ajout" />
                                              </columns>
                                           </TableView>
-                                          <Button fx:id="supprimerPubliciteButton" layoutX="589.0" layoutY="643.0" mnemonicParsing="false" onAction="#supprimerPublicite" prefHeight="27.0" prefWidth="82.0" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="Supprimer" />
-                                          <Button fx:id="exporterEnPdf" layoutX="494.0" layoutY="643.0" mnemonicParsing="false" onAction="#exporterPDF" prefHeight="27.0" prefWidth="82.0" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="Exporter en PDF" />
-                                          <Button fx:id="allCountriesStats" layoutX="403.0" layoutY="643.0" mnemonicParsing="false" onAction="#afficherCountries" prefHeight="27.0" prefWidth="82.0" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="Dans le monde" />
-                                          <TextField fx:id="TitrePublicite" layoutX="856.0" layoutY="88.0" />
-                                          <TextField fx:id="descriptionPublicite" layoutX="854.0" layoutY="220.0" prefHeight="73.0" prefWidth="161.0" />
-                                          <TextField fx:id="marquePublicite" layoutX="853.0" layoutY="155.0" />
-                                          <Text layoutX="878.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre de la publicité" />
-                                          <Text layoutX="899.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marque " wrappingWidth="48.47265625" />
-                                          <Text layoutX="890.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descirption" wrappingWidth="81.58529663085938" />
+                                          <Button fx:id="supprimerPubliciteButton" layoutX="571.0" layoutY="458.0" mnemonicParsing="false" onAction="#supprimerPublicite" prefHeight="27.0" prefWidth="99.0" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="Supprimer" />
+                                          <Button fx:id="exporterEnPdf" layoutX="311.0" layoutY="458.0" mnemonicParsing="false" onAction="#exporterPDF" prefHeight="27.0" prefWidth="107.0" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="Exporter en PDF" />
+                                          <Button fx:id="allCountriesStats" layoutX="57.0" layoutY="457.0" mnemonicParsing="false" onAction="#afficherCountries" prefHeight="27.0" prefWidth="95.0" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="Statistiques " />
+                                          <TextField fx:id="TitrePublicite" layoutX="745.0" layoutY="91.0" />
+                                          <TextField fx:id="descriptionPublicite" layoutX="742.0" layoutY="220.0" prefHeight="25.0" prefWidth="326.0" />
+                                          <TextField fx:id="marquePublicite" layoutX="745.0" layoutY="156.0" prefHeight="0.0" prefWidth="149.0" />
+                                          <Text layoutX="744.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre de la publicité" />
+                                          <Text layoutX="745.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marque " wrappingWidth="48.47265625" />
+                                          <Text layoutX="745.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lien de la Publicité" wrappingWidth="155.58529663085938" />
                                           <Button layoutX="880.0" layoutY="696.0" mnemonicParsing="false" onAction="#ajouterPublicite" prefHeight="25.0" prefWidth="122.0" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="Ajouter" />
-                                          <ImageView fx:id="imagePublicitePreview" fitHeight="288.0" fitWidth="361.0" layoutX="745.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Button fx:id="importerImage" layoutX="868.0" layoutY="613.0" mnemonicParsing="false" onAction="#importerPubliciteImage" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="importer une image" />
-                                          <Label fx:id="publiciteImageCommentaire" layoutX="836.0" layoutY="609.0" prefHeight="17.0" prefWidth="221.0" />
+                                          <ImageView fx:id="imagePublicitePreview" fitHeight="258.0" fitWidth="337.0" layoutX="737.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/placeholder.png" />
+                                             </image></ImageView>
+                                          <Button fx:id="importerImage" layoutX="951.0" layoutY="596.0" mnemonicParsing="false" onAction="#importerPubliciteImage" styleClass="buttonFullOrange" stylesheets="@../styles/dashbordadmin.css" text="importer une image" />
+                                          <Label fx:id="publiciteImageCommentaire" layoutX="742.0" layoutY="567.0" prefHeight="17.0" prefWidth="221.0" text="test" />
+                                          <Separator layoutX="706.0" layoutY="25.0" orientation="VERTICAL" prefHeight="708.0" prefWidth="5.0" />
                                        </children>
                                     </Pane>
                                  </content>

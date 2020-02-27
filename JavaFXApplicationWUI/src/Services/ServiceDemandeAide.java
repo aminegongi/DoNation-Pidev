@@ -7,6 +7,8 @@ package Services;
 
 import Entities.Categorie;
 import Entities.DemandeAide;
+import Entities.UserTest;
+import static Entities.UserTest.id;
 import Utils.DataSource;
 import Utils.Etat;
 import java.sql.Connection;
@@ -293,6 +295,39 @@ public class ServiceDemandeAide {
             }
         
     }
+    
+    
+    
+    
+    
+    //read all demande by id user
+    public  List<DemandeAide> readByIdUser() throws SQLException{
+        List<DemandeAide> arr = new ArrayList<>();
+        String sql = "SELECT * FROM demande WHERE id_user=?";
+        pre = con.prepareStatement(sql);
+        pre.setInt(1, UserTest.id);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()){
+            int id=rs.getInt(1);
+            int idCategorie=rs.getInt(2);
+            int idUser=rs.getInt(3);
+            String titre=rs.getString("titre");
+            String description=rs.getString(5);
+            Etat etat=Etat.valueOf(rs.getString("etat"));
+            //int nbParticipants=rs.getInt(7);
+            int nbReactions=rs.getInt(7);
+            //int nbCommentaires=rs.getInt(9);
+            DemandeAide d =new DemandeAide(id, idCategorie, idUser,  titre,  description, etat,  nbReactions);
+            
+            arr.add(d);
+        }
+            return arr;
+            }
+
+    
+    
+    
+    
    
 }
 

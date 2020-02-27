@@ -55,6 +55,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -187,7 +188,8 @@ public class DashbordAdminRestoController implements Initializable {
             listViewDonResto.setExpanded(true);
             listViewDonResto.depthProperty().set(1);
             if(listViewDonResto.getItems().size()==0){
-                    lblDonEmpty.setText("Il n'existe aucun repas servi !");
+                    lblDonEmpty.setText("Il n'existe aucune donation !");
+                    lblTotalDon.setText("Le total des donations : 0.0 Dinars");
                     lblDonEmpty.setAlignment(Pos.CENTER);
                     lblDonEmpty.setVisible(true);
                 }else {
@@ -216,6 +218,12 @@ public class DashbordAdminRestoController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(DashbordAdminRestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+     //initPopup();
+     //initPopup();
+     //initPopup();
+     //initPopup();
+     //initPopup();
+     //initPopup();
      //initPopup();
      //initPopup();
     }
@@ -314,6 +322,7 @@ public class DashbordAdminRestoController implements Initializable {
                 
                 if(listViewDonResto.getItems().size()==0){
                     lblDonEmpty.setText("Il n'existe aucune donation !");
+                    lblTotalDon.setText("Le total des donations : 0.0 Dinars");
                     lblDonEmpty.setAlignment(Pos.CENTER);
                     lblDonEmpty.setVisible(true);
                 }else {
@@ -421,7 +430,8 @@ public class DashbordAdminRestoController implements Initializable {
             listViewDonResto.setExpanded(true);
             listViewDonResto.depthProperty().set(1);
             if(listViewDonResto.getItems().size()==0){
-                    lblDonEmpty.setText("Il n'existe aucun repas servi !");
+                    lblDonEmpty.setText("Il n'existe aucune donation !");
+                    lblTotalDon.setText("Le total des donations : 0.0 Dinars");
                     lblDonEmpty.setAlignment(Pos.CENTER);
                     lblDonEmpty.setVisible(true);
                 }else {
@@ -450,6 +460,12 @@ public class DashbordAdminRestoController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(DashbordAdminRestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+     //initPopup();
+     //initPopup();
+     //initPopup();
+     //initPopup();
+     //initPopup();
+     //initPopup();
      //initPopup();
      //initPopup();
     }
@@ -487,7 +503,8 @@ public class DashbordAdminRestoController implements Initializable {
             listViewDonResto.setExpanded(true);
             listViewDonResto.depthProperty().set(1);
             if(listViewDonResto.getItems().size()==0){
-                    lblDonEmpty.setText("Il n'existe aucun repas servi !");
+                    lblDonEmpty.setText("Il n'existe aucune donation !");
+                    lblTotalDon.setText("Le total des donations : 0.0 Dinars");
                     lblDonEmpty.setAlignment(Pos.CENTER);
                     lblDonEmpty.setVisible(true);
                 }else {
@@ -507,7 +524,7 @@ public class DashbordAdminRestoController implements Initializable {
             List<TarifResto> list = serTar.readAll();
              List<TarifResto> listFT = new ArrayList<>();
             for(TarifResto t : list){
-                if(txtRecherche.getText().compareToIgnoreCase(t.getNomResto())==0){
+                if(t.getNomResto().toLowerCase().contains(txtRecherche.getText().toLowerCase())==true){
                 listFT.add(t);
                 }
             }
@@ -529,7 +546,7 @@ public class DashbordAdminRestoController implements Initializable {
             List<DonRestaurant> listDon = serDon.readAll();
             List<DonRestaurant> listFD = new ArrayList<>();
             for(DonRestaurant d : listDon){
-                if(txtRecherche.getText().compareToIgnoreCase(d.getNomUser())==0){
+                if(d.getNomUser().toLowerCase().contains(txtRecherche.getText().toLowerCase())==true){
                 listFD.add(d);
                 }
             }
@@ -539,7 +556,8 @@ public class DashbordAdminRestoController implements Initializable {
             listViewDonResto.setExpanded(true);
             listViewDonResto.depthProperty().set(1);
             if(listViewDonResto.getItems().size()==0){
-                    lblDonEmpty.setText("Il n'existe aucun repas servi !");
+                    lblDonEmpty.setText("Il n'existe aucune donation !");
+                    lblTotalDon.setText("Le total des donations : 0.0 Dinars");
                     lblDonEmpty.setAlignment(Pos.CENTER);
                     lblDonEmpty.setVisible(true);
                 }else {
@@ -547,6 +565,11 @@ public class DashbordAdminRestoController implements Initializable {
                 }
         }
 }
+
+   
+
+
+ 
 
 
 }
